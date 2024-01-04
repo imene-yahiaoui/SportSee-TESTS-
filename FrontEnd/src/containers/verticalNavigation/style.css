@@ -1,0 +1,28 @@
+.vertical-navigation {
+  width: 117px;
+  background-color: black;
+  height: 100vh;
+  position: relative;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+.vertical-navigation-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 23px;
+}
+.vertical-navigation-p {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 12px;
+  transform: rotate(90deg);
+  color: white;
+  width: 142px;
+}
