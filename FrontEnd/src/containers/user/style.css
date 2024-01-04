@@ -1,0 +1,22 @@
+.user {
+  height: 89px;
+}
+.user-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.user-top h1,
+.user-name {
+  font-weight: 500;
+  font-size: 48px;
+}
+.user-name {
+  color: red;
+  font-size: 18px;
+  font-weight: 400;
+}
+.user p {
+  margin-top: -19px;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-
+import User from "../../containers/user";
 import "./style.css";
 
 const Home: React.FC<HomeProps> = () => {
   return (
-    <div>
-      <h1>Home here </h1>
+    <div className="home">
+      <User userName="Tomase" />
     </div>
   );
 };
