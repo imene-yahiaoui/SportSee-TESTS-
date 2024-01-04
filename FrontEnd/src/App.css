@@ -1,12 +1,13 @@
 .App {
   max-width: 1400px;
   margin: 0 auto;
+  min-height: 780px;
+  min-width: 1024px;
 }
 body {
   margin: 0 auto;
   font-family: "Roboto";
 }
-.App-page{
-
+.App-page {
   display: inline-flex;
 }
