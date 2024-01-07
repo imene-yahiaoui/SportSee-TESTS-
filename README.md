@@ -4,6 +4,8 @@
 
 
 
+
+
 Le projet repose sur une stack technologique moderne pour assurer performance et qualité :
 
 🌐 Vite: Un bundler rapide pour le développement web.
