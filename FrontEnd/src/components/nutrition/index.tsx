@@ -2,13 +2,13 @@ import React from "react";
 
 import "./style.css";
 
-const Nutrition: React.FC = () => {
+const Nutrition: React.FC = ({Nutritionicon,NutritionType}) => {
   return (
     <div className="nutrition">
-      <img  className="NutritionContainer"src="../../assets/images/NutritionIcons/calories-icon.png" alt="icon"/>
+      <img  className="NutritionContainer"src={Nutritionicon} alt="icon"/>
       <div className="NutritionInfo">
       <h5>1,930kCal </h5>
-      <p> Calories </p>
+      <p> {NutritionType} </p>
       </div>
     </div>
   );
