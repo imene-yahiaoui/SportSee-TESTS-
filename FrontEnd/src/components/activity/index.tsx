@@ -5,7 +5,7 @@ import "./style.css";
 const Activity: React.FC = () => {
   return (
     <div className="Activity">
-      <h1> Activity </h1>
+   <p> Activité quotidienne </p>
     </div>
   );
 };

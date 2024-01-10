@@ -1,5 +1,5 @@
 .user {
-  height: 89px;
+  height: 20%;
 }
 .user-top {
   display: flex;
@@ -10,7 +10,7 @@
 .user-top h1,
 .user-name {
   font-weight: 500;
-  font-size: 48px;
+  font-size: 38px;
 }
 .user-name {
   color: red;

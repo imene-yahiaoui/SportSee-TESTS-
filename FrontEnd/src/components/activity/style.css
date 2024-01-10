@@ -1,5 +1,9 @@
 .Activity {
   width: 100%;
-  height: 40%;
-  background-color: rgb(95, 95, 136);
+  height: 37%;
+  background-color: 
+  rgba(251, 251, 251, 1)
+}
+.Activity p{
+  margin:0;
 }

@@ -1,0 +1,16 @@
+.nutrition {
+  width: 258px;
+  height: 100px;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+
+}
+.NutritionInfo{
+    display: flex;
+    flex-direction: column;
+}
+.NutritionContainer {
+  width: 60px;
+  height: 60px;
+}
