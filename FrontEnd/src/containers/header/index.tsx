@@ -14,13 +14,13 @@ const Header: React.FC = () => {
           <Link to="/">Accueil</Link>
         </li>
         <li>
-          <Link to="#">Profil</Link>
+          <Link to="/profil/12">Profil</Link>
         </li>
         <li>
-          <Link to="#">Réglage</Link>
+          <Link to="/settings">Réglage</Link>
         </li>
         <li>
-          <Link to="#">Communauté</Link>
+          <Link to="/community">Communauté</Link>
         </li>
       </ul>
     </div>

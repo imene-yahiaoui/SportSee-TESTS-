@@ -42,6 +42,17 @@ import PropTypes from "prop-types";
 // ];
 
 export default class LineCharte extends PureComponent {
+  formatLabel = (day) => {
+    if (day === 1) return "L";
+    if (day === 2) return "M";
+    if (day === 3) return "M";
+    if (day === 4) return "J";
+    if (day === 5) return "V";
+    if (day === 6) return "S";
+    if (day === 7) return "D";
+    return day;
+  };
+
   render() {
     const { data } = this.props;
 
@@ -52,7 +63,7 @@ export default class LineCharte extends PureComponent {
           sessions
         </h3>
         <ResponsiveContainer
-          width="90%"
+          width="10%"
           height="70%"
           className={"responsiveContainer"}
         >
@@ -77,7 +88,7 @@ export default class LineCharte extends PureComponent {
                 fill: "rgba(255,255,255,0.6)",
                 fontSize: "0.75rem",
               }}
-              // tickFormatter={formatLabel}
+              tickFormatter={this.formatLabel}
               tickMargin={20}
             />
             <Tooltip content={<CustomTooltip />} cursor={false} />

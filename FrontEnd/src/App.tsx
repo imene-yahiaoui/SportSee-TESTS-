@@ -6,13 +6,12 @@ import Verticalnavigation from "./containers/verticalNavigation";
 function App() {
   return (
     <div className="App">
-      
-        <Header />
-       
-        <Verticalnavigation />
-        <RoutesPath />
-   
-     
+      <Header />
+
+      <Verticalnavigation />
+      <div className="RoutesPath" >
+      <RoutesPath />
+      </div>
     </div>
   );
 }

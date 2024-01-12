@@ -1,11 +1,13 @@
-import { User12 } from "./CallServices";
-//import { User18 } from "./CallServices";
 import axios from "axios";
 
-export const fetchDataUser = () => {
-  return axios.get(`http://localhost:3000/user/${User12}`);
+export const fetchDataUser = (userID) => {
+  return axios.get(`http://localhost:3000/user/${userID}`);
 };
 
-export const fetchaverageSessions = () => {
-  return axios.get(`http://localhost:3000/user/${User12}/average-sessions`);
+export const fetchaverageSessions = (userID) => {
+  return axios.get(`http://localhost:3000/user/${userID}/average-sessions`);
+};
+
+export const fetchPerformance = (userID) => {
+  return axios.get(`http://localhost:3000/user/${userID}/performance`);
 };
