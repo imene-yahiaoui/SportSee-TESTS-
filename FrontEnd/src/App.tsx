@@ -8,10 +8,10 @@ function App() {
     <div className="App">
       
         <Header />
-        <div className="App-page">
+       
         <Verticalnavigation />
         <RoutesPath />
-      </div>
+   
      
     </div>
   );

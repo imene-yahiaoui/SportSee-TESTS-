@@ -1,0 +1,27 @@
+.chartContainer {
+  width: 258px;
+  height: 263px;
+  background-color: rgba(255, 0, 0, 1);
+}
+.chartLineTitle {
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  opacity: 0.6;
+}
+.responsiveContainer {
+  margin: 0 auto;
+}
+.customTooltip {
+  width: 39px;
+  height: 25px;
+
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+.customTooltipText {
+  font-size: 8px;
+  font-weight: 500;
+  font-family: "roboto";
+}
