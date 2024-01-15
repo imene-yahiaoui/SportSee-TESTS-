@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import "./style.css";
 import {
   Radar,
   RadarChart,
@@ -10,22 +11,41 @@ import {
 import PropTypes from "prop-types";
 
 export default class RadarChartComponent extends PureComponent {
-
   render() {
     const { data } = this.props;
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="kind"  />
-          <PolarRadiusAxis />
+      <ResponsiveContainer
+        width="40%"
+        height="100%"
+        className="RadarChartContainer"
+      >
+        <RadarChart cx="50%" cy="50%" outerRadius={90} data={data}>
+          <PolarGrid radialLines={false} />
+          <PolarAngleAxis
+            dataKey="kind"
+            tick={{
+              fontFamily: "Roboto",
+              fontWeight: 500,
+              fontSize: "12px",
+              lineHeight: "24px",
+              textAlign: "right",
+              position: "insideBottom",
+              fill: "#FFFFFF",
+            }}
+            axisLine={{
+              stroke: "#FFFFFF",
+              strokeWidth: 1,
+            }}
+            
+          />
+          <PolarRadiusAxis tickCount={6} tick={false} axisLine={false} />
           <Radar
-            // name="Mike"
             dataKey="value"
-            stroke="#8884d8"
-            fill="#8884d8"
-            fillOpacity={0.6}
+            stroke="#FF0101"
+            fill="#FF0101"
+            fillOpacity={0.7}
+          
           />
         </RadarChart>
       </ResponsiveContainer>
