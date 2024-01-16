@@ -3,9 +3,12 @@ import User from "../../containers/user";
 import Activity from "../../components/activity";
 import Nutrition from "../../components/nutrition";
 import { useParams } from "react-router-dom";
-import { fetchaverageSessions } from "../../helpers/services/services";
-import { fetchDataUser } from "../../helpers/services/services.tsx";
-import { fetchPerformance } from "../../helpers/services/services.tsx";
+import {
+  getAverageSessions,
+  getDataUser,
+  getPerformance,
+  getActivity,
+} from "../../helpers/services/services";
 
 import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
 import ProteinesIcon from "../../assets/images/NutritionIcons/protein-icon.png";
@@ -13,6 +16,7 @@ import GlucidesIcon from "../../assets/images/NutritionIcons/carbs-icon.png";
 import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import LineCharte from "../../components/lineChart";
 import RadarChartComponent from "../../components/radarChart";
+import RadialBarChartComponent from "../../components/radialBarChart";
 import "./style.css";
 
 interface UserInfo {
@@ -31,6 +35,7 @@ interface Performance {
   sessionLength: number;
 }
 
+interface Activity {}
 const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
@@ -40,14 +45,16 @@ const Profil: React.FC<ProfilProps> = () => {
     null
   );
   const [performance, setPerformance] = useState<Performance[] | null>(null);
-
+  const [activity, setActivity] = useState<Activity[] | null>(null);
   useEffect(() => {
-    fetchDataUser(id).then((res) => setInfoUser(res.data.data));
-    fetchaverageSessions(id).then((res) =>
+    getDataUser(id).then((res) => setInfoUser(res.data.data));
+    getAverageSessions(id).then((res) =>
       setAverageSessions(res.data.data.sessions)
     );
-    fetchPerformance(id).then((res) => setPerformance(res.data.data));
-  }, [id]);
+    getPerformance(id).then((res) => setPerformance(res.data.data));
+    getActivity(id).then((res) => setActivity(res.data.data.sessions));
+  }, [id, infoUser]);
+  console.log("activity", activity);
   /**
    * radar
    */
@@ -108,6 +115,7 @@ const Profil: React.FC<ProfilProps> = () => {
           <div className="statsData">
             {averageSessions && <LineCharte data={averageSessions} />}
             {radarChartData && <RadarChartComponent data={radarChartData} />}
+            <RadialBarChartComponent />
           </div>
         </section>
         <section className="SectionNutrition">
