@@ -1,5 +1,5 @@
 .chartContainer {
-  width: 258px;
+  width: 30%;
   height: 263px;
   background-color: rgba(255, 0, 0, 1);
 }
@@ -8,6 +8,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   opacity: 0.6;
+  padding-left: 10%;
 }
 .responsiveContainer {
   margin: 0 auto;

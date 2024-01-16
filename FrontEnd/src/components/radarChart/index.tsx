@@ -16,7 +16,7 @@ export default class RadarChartComponent extends PureComponent {
 
     return (
       <ResponsiveContainer
-        width="40%"
+        width="30%"
         height="100%"
         className="RadarChartContainer"
       >
@@ -37,7 +37,6 @@ export default class RadarChartComponent extends PureComponent {
               stroke: "#FFFFFF",
               strokeWidth: 1,
             }}
-            
           />
           <PolarRadiusAxis tickCount={6} tick={false} axisLine={false} />
           <Radar
@@ -45,7 +44,6 @@ export default class RadarChartComponent extends PureComponent {
             stroke="#FF0101"
             fill="#FF0101"
             fillOpacity={0.7}
-          
           />
         </RadarChart>
       </ResponsiveContainer>

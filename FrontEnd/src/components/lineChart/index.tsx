@@ -63,7 +63,7 @@ export default class LineCharte extends PureComponent {
           sessions
         </h3>
         <ResponsiveContainer
-          width="10%"
+          width="100%"
           height="70%"
           className={"responsiveContainer"}
         >

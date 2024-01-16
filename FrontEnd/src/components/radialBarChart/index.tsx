@@ -1,9 +1,8 @@
-import React from 'react';
- 
+import React from "react";
 
-const data = 33;  
+import "./style.css";
+const data = 33;
 
- 
 const CircleChart = ({ percentage }) => {
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
@@ -22,7 +21,14 @@ const CircleChart = ({ percentage }) => {
         strokeDashoffset={offset}
         transform={`rotate(190 100 100)`}
       />
-      <text x="50%" y="50%" textAnchor="middle" dy="0.3em" fontSize="20" fill="#FF0000">
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dy="0.3em"
+        fontSize="20"
+        fill="#FF0000"
+      >
         {`${percentage}%`}
       </text>
     </svg>
@@ -30,12 +36,7 @@ const CircleChart = ({ percentage }) => {
 };
 
 const RadialBarChartComponent = () => {
-  return (
-    <div>
-      <CircleChart percentage={data} />
-   
-    </div>
-  );
+  return <CircleChart width="30%" height="100%" percentage={data} />;
 };
 
 export default RadialBarChartComponent;

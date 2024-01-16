@@ -16,7 +16,7 @@ import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import LineCharte from "../../components/lineChart";
 import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
-import BarChartComponent from "../../components/BarChart"
+import BarChartComponent from "../../components/BarChart";
 import "./style.css";
 
 interface UserInfo {
@@ -35,7 +35,11 @@ interface Performance {
   sessionLength: number;
 }
 
-interface Activity {}
+interface Activity {
+  day: number;
+  kilogram: number;
+  calories: number;
+}
 const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
@@ -52,7 +56,7 @@ const Profil: React.FC<ProfilProps> = () => {
       setAverageSessions(res.data.data.sessions)
     );
     getPerformance(id).then((res) => setPerformance(res.data.data));
-    getActivity(id).then((res) => setActivity(res.data.data.sessions));
+    getActivity(id).then((res) => setActivity(res.data.data));
   }, [id, infoUser]);
   console.log("activity", activity);
   /**
@@ -111,7 +115,7 @@ const Profil: React.FC<ProfilProps> = () => {
       <User userName={infoUser?.userInfos?.firstName} />
       <div className="container">
         <section className="profilStatistics">
-          <BarChartComponent />
+          {activity && <BarChartComponent data={activity?.sessions} />}
           <div className="statsData">
             {averageSessions && <LineCharte data={averageSessions} />}
             {radarChartData && <RadarChartComponent data={radarChartData} />}

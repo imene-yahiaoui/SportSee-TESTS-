@@ -8,72 +8,74 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { CustomTooltip } from "./CustomTooltip";
 import "./style.css";
-const data = [
-  {
-    day: "2020-07-01",
-    kilogram: 80,
-    calories: 240,
-  },
-  {
-    day: "2020-07-02",
-    kilogram: 80,
-    calories: 220,
-  },
-  {
-    day: "2020-07-03",
-    kilogram: 81,
-    calories: 280,
-  },
-  {
-    day: "2020-07-04",
-    kilogram: 81,
-    calories: 290,
-  },
-  {
-    day: "2020-07-05",
-    kilogram: 80,
-    calories: 160,
-  },
-  {
-    day: "2020-07-06",
-    kilogram: 78,
-    calories: 162,
-  },
-  {
-    day: "2020-07-07",
-    kilogram: 76,
-    calories: 390,
-  },
-];
+import PropTypes from "prop-types";
+// const data = [
+//   {
+//     day: "2020-07-01",
+//     kilogram: 80,
+//     calories: 240,
+//   },
+//   {
+//     day: "2020-07-02",
+//     kilogram: 80,
+//     calories: 220,
+//   },
+//   {
+//     day: "2020-07-03",
+//     kilogram: 81,
+//     calories: 280,
+//   },
+//   {
+//     day: "2020-07-04",
+//     kilogram: 81,
+//     calories: 290,
+//   },
+//   {
+//     day: "2020-07-05",
+//     kilogram: 80,
+//     calories: 160,
+//   },
+//   {
+//     day: "2020-07-06",
+//     kilogram: 78,
+//     calories: 162,
+//   },
+//   {
+//     day: "2020-07-07",
+//     kilogram: 76,
+//     calories: 390,
+//   },
+// ];
 
 const formatDays = (tickItem, i) => {
   return i + 1;
 };
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="custom-tooltip-line">
-        <p className="desc">{payload[0].value + "kg"}</p>
-        <p className="desc">{payload[1].value + "Kcal"}</p>
-      </div>
-    );
-  }
-  return null;
-};
 
 export default class BarChartComponent extends PureComponent {
   render() {
+    const { data } = this.props;
+
     return (
       <div className="Activity">
-        <ResponsiveContainer width="100%" height="100%">
-          <p className="barChart-title">Activité quotidienne</p>
+        <ResponsiveContainer width="90%" height="80%">
+          <div className="headerBarChart">
+            <p className="barChartTitle">Activité quotidienne</p>
+            <div className="custom-tooltip-legend">
+              <div className="kilogram">
+                <div className="blackRound"></div>
+                <p className="desc">Poids (kg)</p>
+              </div>
 
+              <div className="kilogram">
+                <div className="redRound"></div>
+                <p className="desc">Calories brûlées (kCal)</p>
+              </div>
+            </div>
+          </div>
           <BarChart data={data} barSize={7} barGap={8}>
-          <CartesianGrid 
-					strokeDasharray="3 3" 
-					vertical={false}
-					/>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
             <XAxis
               dataKey="day"
@@ -135,3 +137,7 @@ export default class BarChartComponent extends PureComponent {
     );
   }
 }
+
+BarChartComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
