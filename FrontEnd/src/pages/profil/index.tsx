@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import User from "../../containers/user";
-import Activity from "../../components/activity";
 import Nutrition from "../../components/nutrition";
 import { useParams } from "react-router-dom";
 import {
@@ -17,6 +16,7 @@ import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import LineCharte from "../../components/lineChart";
 import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
+import BarChartComponent from "../../components/BarChart"
 import "./style.css";
 
 interface UserInfo {
@@ -111,7 +111,7 @@ const Profil: React.FC<ProfilProps> = () => {
       <User userName={infoUser?.userInfos?.firstName} />
       <div className="container">
         <section className="profilStatistics">
-          <Activity />
+          <BarChartComponent />
           <div className="statsData">
             {averageSessions && <LineCharte data={averageSessions} />}
             {radarChartData && <RadarChartComponent data={radarChartData} />}
