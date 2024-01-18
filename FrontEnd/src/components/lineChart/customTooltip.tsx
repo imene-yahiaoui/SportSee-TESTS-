@@ -2,12 +2,13 @@ import React from "react";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
-
-    const data = payload[0].payload; 
+    const data = payload[0].payload;
 
     return (
-      <div className="customTooltip">
-        <p className="customTooltipText">{data.sessionLength + "min"}</p>
+      <div className="customTooltipChartLine">
+        <p className="customTooltipTextChartLine">
+          {data.sessionLength + "min"}
+        </p>
       </div>
     );
   }

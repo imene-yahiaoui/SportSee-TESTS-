@@ -1,0 +1,25 @@
+.users {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+ 
+
+ 
+.userBtn {
+    background: #b621fe;
+    border: 6%;
+   padding: 10px 20px;
+  }
+   
+  .userBtn:hover {
+    color: #fff;
+  }
+  .userBtn:hover:after {
+    left: 0;
+    width: 100%;
+  }
+  .userBtn:active {
+    top: 2px;
+  }
+  

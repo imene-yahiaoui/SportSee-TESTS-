@@ -10,38 +10,10 @@ import React, { PureComponent } from "react";
 import CustomTooltip from "./customTooltip";
 import "./style.css";
 import PropTypes from "prop-types";
-// const data = [
-//   {
-//     day: "L",
-//     essionLength: 30,
-//   },
-//   {
-//     day: "M",
-//     essionLength: 23,
-//   },
-//   {
-//     day: "M",
-//     value: 45,
-//   },
-//   {
-//     day: "J",
-//     value: 50,
-//   },
-//   {
-//     day: "V",
-//     value: 0,
-//   },
-//   {
-//     day: "S",
-//     value: 0,
-//   },
-//   {
-//     name: "D",
-//     value: 60,
-//   },
-// ];
 
 export default class LineCharte extends PureComponent {
+ 
+
   formatLabel = (day) => {
     if (day === 1) return "L";
     if (day === 2) return "M";
@@ -52,7 +24,9 @@ export default class LineCharte extends PureComponent {
     if (day === 7) return "D";
     return day;
   };
-
+  handleMouseOver = (index) => {
+    setHoveredIndex(index);
+  }
   render() {
     const { data } = this.props;
 
@@ -63,7 +37,7 @@ export default class LineCharte extends PureComponent {
           sessions
         </h3>
         <ResponsiveContainer
-          width="100%"
+          width="90%"
           height="70%"
           className={"responsiveContainer"}
         >
@@ -81,15 +55,18 @@ export default class LineCharte extends PureComponent {
               dot={false}
             />
             <XAxis
+                 className={"XAxisLineChart"}
               dataKey="day"
               axisLine={false}
               tickLine={false}
               tick={{
                 fill: "rgba(255,255,255,0.6)",
                 fontSize: "0.75rem",
+              
               }}
               tickFormatter={this.formatLabel}
               tickMargin={20}
+               
             />
             <Tooltip content={<CustomTooltip />} cursor={false} />
             <YAxis hide domain={["dataMin-10", "dataMax+10"]} />

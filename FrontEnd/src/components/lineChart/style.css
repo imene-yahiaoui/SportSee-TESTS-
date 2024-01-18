@@ -1,9 +1,10 @@
 .chartContainer {
   width: 30%;
-
+  border-radius: 5px;
   height: 100%;
   background-color: rgba(255, 0, 0, 1);
 }
+
 .chartLineTitle {
   color: #fff;
   font-size: 0.9375rem;
@@ -11,19 +12,25 @@
   opacity: 0.6;
   padding-left: 10%;
 }
+.responsiveContainer,
 .responsiveContainer {
-  margin: 0 auto;
+  margin: 0px auto;
+  width: 90%;
+  padding-bottom: 20px;
 }
-.customTooltip {
+.customTooltipChartLine {
   width: 39px;
   height: 25px;
-
-  background: white;
   display: flex;
   justify-content: center;
 }
-.customTooltipText {
+.customTooltipTextChartLine {
+  color: black;
+  background: white;
+  padding: 15px 17px;
   font-size: 8px;
   font-weight: 500;
   font-family: "roboto";
+  display: flex;
+  align-items: center;
 }
