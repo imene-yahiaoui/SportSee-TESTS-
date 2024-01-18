@@ -24,6 +24,8 @@ interface UserInfo {
     firstName: string;
     lastName: string;
   };
+  score: number;
+  todayScore: number;
 }
 
 interface Session {
@@ -40,6 +42,7 @@ interface Activity {
   kilogram: number;
   calories: number;
 }
+
 const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
@@ -50,6 +53,7 @@ const Profil: React.FC<ProfilProps> = () => {
   );
   const [performance, setPerformance] = useState<Performance[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
+
   useEffect(() => {
     getDataUser(id).then((res) => setInfoUser(res.data.data));
     getAverageSessions(id).then((res) =>
@@ -58,7 +62,7 @@ const Profil: React.FC<ProfilProps> = () => {
     getPerformance(id).then((res) => setPerformance(res.data.data));
     getActivity(id).then((res) => setActivity(res.data.data));
   }, [id, infoUser]);
-  console.log("activity", activity);
+
   /**
    * radar
    */
@@ -119,7 +123,7 @@ const Profil: React.FC<ProfilProps> = () => {
           <div className="statsData">
             {averageSessions && <LineCharte data={averageSessions} />}
             {radarChartData && <RadarChartComponent data={radarChartData} />}
-            <RadialBarChartComponent />
+            {infoUser && <RadialBarChartComponent data={infoUser} />}
           </div>
         </section>
         <section className="SectionNutrition">

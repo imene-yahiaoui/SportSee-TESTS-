@@ -1,86 +1,56 @@
-import React from "react";
-import "./style.css";
-import {
-  ResponsiveContainer,
-  PolarAngleAxis,
-  RadialBarChart,
-  RadialBar,
-  Legend,
-} from "recharts";
-// import PropTypes from "prop-types";
+import React, { PureComponent } from "react";
+import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import PropTypes from "prop-types";
 
-const CustomizedLegend = ({ payload }) => {
-  if (payload && payload.length) {
+import "./style.css";
+
+export default class RadialBarChartComponent extends PureComponent {
+  render() {
+    const { data } = this.props;
+    
+    const score = data.todayScore ? data.todayScore : data.score;
+
+    const dataArray = [{ name: "score", value: score }];
+    
+
     return (
-      <div className="custom-legend">
-        <h1 className="desc">{payload[0].value + "%"}</h1>
-        <p>de votre</p>
-        <p>objectif</p>
+      <div className="RadialBarChart">
+        <h3 className="RadialBarChartTitle">Score</h3>
+        <ResponsiveContainer width="90%" height="70%">
+          <div className="scoreValue">
+            <p className="scoreNumber">{score * 100}%</p>
+            <p>de votre</p>
+            <p>objectif</p>
+          </div>
+          <RadialBarChart
+            innerRadius="0%"
+            outerRadius="0%"
+            data={dataArray}
+            startAngle={90}
+            endAngle={450}
+          >
+            <RadialBar
+              data={[{ value: 1 }]}
+              dataKey="value"
+              barSize={190}
+              fill="#ffffff"
+              isAnimationActive={false}
+            />
+            <RadialBar
+              dataKey="value"
+              barSize={10}
+              cornerRadius={100}
+              fill="#FF0000"
+            />
+          </RadialBarChart>
+        </ResponsiveContainer>
       </div>
     );
   }
-
-  return null;
-};
-
-function RadialBarChartComponent() {
-  const score = 30;
-
-  // let score = [{ "name": "score", "value": (0.3 * 100) }]
-
-  return (
-    <article className="circleChart">
-      <h1 className="score">Score</h1>
-      <div className="path"></div>
-
-      <ResponsiveContainer>
-        <RadialBarChart
-          width={"100%"}
-          height={"100%"}
-          innerRadius="72%"
-          outerRadius="85%"
-          data={score}
-          startAngle={90}
-          endAngle={450}
-        >
-          <PolarAngleAxis
-            type="number"
-            domain={[0, 100]}
-            dataKey={"value"}
-            angleAxisId={0}
-            tick={false}
-          />
-
-          <RadialBar
-            minAngle={5}
-            fill="#E60000"
-            background={{ fill: "#fff" }}
-            position="center"
-            clockWise={true}
-            dataKey="value"
-            legendType="square"
-            data={score}
-            cornerRadius="50%"
-          />
-
-          <Legend
-            iconSize={10}
-            width={20}
-            height={20}
-            layout="vertical"
-            verticalAlign="top"
-            align="center"
-            payload={score}
-            content={<CustomizedLegend />}
-          />
-        </RadialBarChart>
-      </ResponsiveContainer>
-    </article>
-  );
 }
-
-// RadialBarChartComponent.propTypes = {
-//   data: PropTypes.object.isRequired,
-// };
-
-export default RadialBarChartComponent;
+RadialBarChartComponent.propTypes = {
+  data: PropTypes.shape({
+    todayScore: PropTypes.number,
+    score: PropTypes.number.isRequired,
+  }).isRequired,
+};
