@@ -7,11 +7,10 @@ import "./style.css";
 export default class RadialBarChartComponent extends PureComponent {
   render() {
     const { data } = this.props;
-    
+
     const score = data.todayScore ? data.todayScore : data.score;
 
     const dataArray = [{ name: "score", value: score }];
-    
 
     return (
       <div className="RadialBarChart">

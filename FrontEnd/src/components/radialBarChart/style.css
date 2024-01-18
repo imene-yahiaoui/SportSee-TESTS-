@@ -1,4 +1,3 @@
- 
 .RadialBarChart {
   width: 30%;
   background-color: #00000005;
@@ -22,7 +21,7 @@
   line-height: 1.625rem;
   text-align: center;
   position: absolute;
-  right: 35%;
+  right: 40%;
   bottom: 30%;
   z-index: 2;
 }
