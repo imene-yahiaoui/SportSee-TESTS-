@@ -1,4 +1,3 @@
-***SportSee***
 
 🚀 Technologies Utilisées  :
 
