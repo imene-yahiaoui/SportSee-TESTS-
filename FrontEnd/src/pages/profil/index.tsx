@@ -7,6 +7,8 @@ import {
   getDataUser,
   getPerformance,
   getActivity,
+   test,
+   isBackendAvailable,
 } from "../../helpers/services/services";
 
 import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
@@ -18,7 +20,7 @@ import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
 import BarChartComponent from "../../components/BarChart";
 import "./style.css";
-
+ 
 interface UserInfo {
   userInfos: {
     firstName: string;
@@ -47,6 +49,7 @@ const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
 
+  const [isBackendAccessible, setIsBackendAccessible] = useState< boolean |null>(null);
   const [infoUser, setInfoUser] = useState<UserInfo | null>(null);
   const [averageSessions, setAverageSessions] = useState<Session[] | null>(
     null
@@ -55,13 +58,37 @@ const Profil: React.FC<ProfilProps> = () => {
   const [activity, setActivity] = useState<Activity[] | null>(null);
 
   useEffect(() => {
+    const isBackendReady= isBackendAvailable()
+    console.log("isBackendAvailable",isBackendReady)
+    setIsBackendAccessible(isBackendReady)
+    if(isBackendAccessible === true){
     getDataUser(id).then((res) => setInfoUser(res.data.data));
     getAverageSessions(id).then((res) =>
       setAverageSessions(res.data.data.sessions)
     );
     getPerformance(id).then((res) => setPerformance(res.data.data));
     getActivity(id).then((res) => setActivity(res.data.data));
-  }, [id, infoUser]);
+  }
+  else{
+    console.log("l back nai pas despo ")
+    const dataTest = test();
+  
+    console.log(id)
+    const userById = dataTest.find((user) => user.id === parseInt(id, 10));
+    console.log(userById);
+ setInfoUser(userById)
+// Affichez les données de l'utilisateur trouvé dans la console
+console.log(userById);
+
+
+
+    }
+
+  }, [id, infoUser, isBackendAccessible]);
+
+
+  
+  
 
   /**
    * radar

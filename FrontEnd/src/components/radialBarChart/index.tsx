@@ -50,6 +50,6 @@ export default class RadialBarChartComponent extends PureComponent {
 RadialBarChartComponent.propTypes = {
   data: PropTypes.shape({
     todayScore: PropTypes.number,
-    score: PropTypes.number.isRequired,
+    score: PropTypes.number,
   }).isRequired,
 };

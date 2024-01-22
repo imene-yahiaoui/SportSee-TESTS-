@@ -1,0 +1,34 @@
+
+   [ 
+    {
+      "id": 1,
+      "userInfos": {
+        "firstName": "Alice",
+        "lastName": "Smith",
+        "age": 28
+      },
+      "score": 0.25,
+      "keyData": {
+        "calorieCount": 2000,
+        "proteinCount": 120,
+        "carbohydrateCount": 250,
+        "lipidCount": 60
+      }
+    },
+    
+    {
+      "id": 2,
+      "userInfos": {
+        "firstName": "Alice",
+        "lastName": "Smith",
+        "age": 28
+      },
+      "score": 0.25,
+      "keyData": {
+        "calorieCount": 2000,
+        "proteinCount": 120,
+        "carbohydrateCount": 250,
+        "lipidCount": 60
+      }
+    }
+  ]

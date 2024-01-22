@@ -1,0 +1,40 @@
+[
+  {
+    "userId": 1,
+    "kind": {
+      "1": "cardio",
+      "2": "energy",
+      "3": "endurance",
+      "4": "strength",
+      "5": "speed",
+      "6": "intensity"
+    },
+    "data": [
+      { "value": 180, "kind": 1 },
+      { "value": 210, "kind": 2 },
+      { "value": 100, "kind": 3 },
+      { "value": 90, "kind": 4 },
+      { "value": 240, "kind": 5 },
+      { "value": 120, "kind": 6 }
+    ]
+  },
+  {
+    "userId": 2,
+    "kind": {
+      "1": "cardio",
+      "2": "energy",
+      "3": "endurance",
+      "4": "strength",
+      "5": "speed",
+      "6": "intensity"
+    },
+    "data": [
+      { "value": 90, "kind": 1 },
+      { "value": 130, "kind": 2 },
+      { "value": 150, "kind": 3 },
+      { "value": 60, "kind": 4 },
+      { "value": 220, "kind": 5 },
+      { "value": 100, "kind": 6 }
+    ]
+  }
+]
