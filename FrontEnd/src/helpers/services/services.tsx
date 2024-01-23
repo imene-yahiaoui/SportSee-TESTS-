@@ -7,7 +7,7 @@ import performance from "../../assets/mock/performance.json";
  * Function to check if the backend is available
  */
 
-export const isBackendAvailable = () => false;
+export const isBackendAvailable = () => true;
 /**
  * Functions to return mock data
  */

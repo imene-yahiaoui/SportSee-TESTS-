@@ -79,7 +79,7 @@ const Profil: React.FC<ProfilProps> = () => {
       /**
        * if backend is not ready , use mocks data
        */
-    } else {
+    } else if (isBackendAccessible === false) {
       console.log("l back nai pas despo ");
       /**
        * Retrieve user data
