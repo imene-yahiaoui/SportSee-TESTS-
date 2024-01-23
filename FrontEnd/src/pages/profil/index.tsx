@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import User from "../../containers/user";
 import Nutrition from "../../components/nutrition";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import {
   getAverageSessions,
   getDataUser,
@@ -61,6 +61,7 @@ const Profil: React.FC<ProfilProps> = () => {
   );
   const [performance, setPerformance] = useState<Performance[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
+  const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
 
   useEffect(() => {
     const isBackendReady = isBackendAvailable();
@@ -71,11 +72,30 @@ const Profil: React.FC<ProfilProps> = () => {
      */
     if (isBackendAccessible === true) {
       getDataUser(id).then((res) => setInfoUser(res.data.data));
+
       getAverageSessions(id).then((res) =>
         setAverageSessions(res.data.data.sessions)
       );
+
       getPerformance(id).then((res) => setPerformance(res.data.data));
+
       getActivity(id).then((res) => setActivity(res.data.data));
+
+      /**
+       * Check if the user is allowed to access the route based on the user's ID.
+       * The route is protected for specific user IDs (12, 18) or if the ID is null.
+       * @param {number} id - The user ID.
+       * @returns {boolean} - True if the user is allowed, false otherwise.
+       */
+      if (
+        parseInt(id, 10) === 12 ||
+        parseInt(id, 10) === 18 ||
+        parseInt(id, 10) === null
+      ) {
+        setIsUserAccessible(true);
+      } else {
+        setIsUserAccessible(false);
+      }
       /**
        * if backend is not ready , use mocks data
        */
@@ -86,31 +106,39 @@ const Profil: React.FC<ProfilProps> = () => {
        */
       const userData = userDatas();
       const userById = userData.find((user) => user.id === parseInt(id, 10));
-      setInfoUser(userById);
       /**
-       * Retrieve users activity
+       * Check if the user is allowed to access the route based on the user's ID.
+       * If the user with the specified ID is not found in the JSON file, set accessibility to false.
        */
-      const userActivitys = userActivity();
-      const ActivityById = userActivitys.find(
-        (user) => user.userId === parseInt(id, 10)
-      );
-      setActivity(ActivityById);
-      /**
-       * Retrieve Performance
-       */
-      const userPerformances = userPerformance();
-      const PerformanceById = userPerformances.find(
-        (user) => user.userId === parseInt(id, 10)
-      );
-      setPerformance(PerformanceById);
-      /**
-       * Retrieve Average Sessions
-       */
-      const userAverageSessions = userAverageSession();
-      const AverageSessionsById = userAverageSessions.find(
-        (user) => user.userId === parseInt(id, 10)
-      );
-      setAverageSessions(AverageSessionsById.sessions);
+      if (!userById) {
+        setIsUserAccessible(false);
+      } else {
+        setInfoUser(userById);
+        /**
+         * Retrieve users activity
+         */
+        const userActivitys = userActivity();
+        const ActivityById = userActivitys.find(
+          (user) => user.userId === parseInt(id, 10)
+        );
+        setActivity(ActivityById);
+        /**
+         * Retrieve Performance
+         */
+        const userPerformances = userPerformance();
+        const PerformanceById = userPerformances.find(
+          (user) => user.userId === parseInt(id, 10)
+        );
+        setPerformance(PerformanceById);
+        /**
+         * Retrieve Average Sessions
+         */
+        const userAverageSessions = userAverageSession();
+        const AverageSessionsById = userAverageSessions.find(
+          (user) => user.userId === parseInt(id, 10)
+        );
+        setAverageSessions(AverageSessionsById.sessions);
+      }
     }
   }, [id, infoUser, isBackendAccessible]);
 
@@ -164,32 +192,35 @@ const Profil: React.FC<ProfilProps> = () => {
       keyData: infoUser?.keyData?.lipidCount,
     },
   ];
-
-  return (
-    <div className="profil">
-      <User userName={infoUser?.userInfos?.firstName} />
-      <div className="container">
-        <section className="profilStatistics">
-          {activity && <BarChartComponent data={activity?.sessions} />}
-          <div className="statsData">
-            {averageSessions && <LineCharte data={averageSessions} />}
-            {radarChartData && <RadarChartComponent data={radarChartData} />}
-            {infoUser && <RadialBarChartComponent data={infoUser} />}
-          </div>
-        </section>
-        <section className="SectionNutrition">
-          {nutritionData.map((nutrition, index) => (
-            <Nutrition
-              key={index}
-              Nutritionicon={nutrition.icon}
-              NutritionType={nutrition.type}
-              keyData={nutrition.keyData}
-            />
-          ))}
-        </section>
+  if (!isUserAccessible) {
+    // Redirect to the 404 page
+    return <Navigate to="/*" />;
+  } else {
+    return (
+      <div className="profil">
+        <User userName={infoUser?.userInfos?.firstName} />
+        <div className="container">
+          <section className="profilStatistics">
+            {activity && <BarChartComponent data={activity?.sessions} />}
+            <div className="statsData">
+              {averageSessions && <LineCharte data={averageSessions} />}
+              {radarChartData && <RadarChartComponent data={radarChartData} />}
+              {infoUser && <RadialBarChartComponent data={infoUser} />}
+            </div>
+          </section>
+          <section className="SectionNutrition">
+            {nutritionData.map((nutrition, index) => (
+              <Nutrition
+                key={index}
+                Nutritionicon={nutrition.icon}
+                NutritionType={nutrition.type}
+                keyData={nutrition.keyData}
+              />
+            ))}
+          </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
-
 export default Profil;
