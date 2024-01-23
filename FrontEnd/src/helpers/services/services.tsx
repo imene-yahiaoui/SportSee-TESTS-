@@ -1,47 +1,59 @@
 import axios from "axios";
 import userData from "../../assets/mock/userData.json";
 import activity from "../../assets/mock/activity.json";
+import averageSessions from "../../assets/mock/average-sessions.json";
+import performance from "../../assets/mock/performance.json";
+/**
+ * Function to check if the backend is available
+ */
 
-export const isBackendAvailable = () => {
-  return false;
-};
+export const isBackendAvailable = () => false;
+/**
+ * Functions to return mock data
+ */
 
-export const userDatas = () => {
-  return userData;
-};
-export const userActivity = () => {
-  return activity;
-};
+export const userDatas = () => userData;
+export const userActivity = () => activity;
+export const userAverageSession = () => averageSessions;
+export const userPerformance = () => performance;
 
+/**
+ * Function to get user data
+ */
 export const getDataUser = (userID) => {
-  /**
-   * Check if the backend is available
-   */
-
   if (isBackendAvailable()) {
     return axios.get(`http://localhost:3000/user/${userID}`);
   } else {
-    /**
-     * Use the data from the JSON file if the backend is not available
-     */
-    console.log("le backend n'est pas disponible");
     return Promise.resolve(userData);
   }
 };
-
+/**
+ * Function to get Average Sessions
+ */
 export const getAverageSessions = (userID) => {
-  return axios.get(`http://localhost:3000/user/${userID}/average-sessions`);
+  if (isBackendAvailable()) {
+    return axios.get(`http://localhost:3000/user/${userID}/average-sessions`);
+  } else {
+    return Promise.resolve(averageSessions);
+  }
 };
-
+/**
+ * Function to get Performance
+ */
 export const getPerformance = (userID) => {
-  return axios.get(`http://localhost:3000/user/${userID}/performance`);
+  if (isBackendAvailable()) {
+    return axios.get(`http://localhost:3000/user/${userID}/performance`);
+  } else {
+    return Promise.resolve(performance);
+  }
 };
-
+/**
+ * Function to get   Activity
+ */
 export const getActivity = (userID) => {
   if (isBackendAvailable()) {
-  return axios.get(`http://localhost:3000/user/${userID}/activity`);
-  }
-  else{
+    return axios.get(`http://localhost:3000/user/${userID}/activity`);
+  } else {
     return Promise.resolve(activity);
   }
 };

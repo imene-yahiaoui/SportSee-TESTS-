@@ -10,6 +10,8 @@ import {
   userDatas,
   isBackendAvailable,
   userActivity,
+  userAverageSession,
+  userPerformance,
 } from "../../helpers/services/services";
 
 import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
@@ -80,7 +82,7 @@ const Profil: React.FC<ProfilProps> = () => {
     } else {
       console.log("l back nai pas despo ");
       /**
-       * Retrieve user data 
+       * Retrieve user data
        */
       const userData = userDatas();
       const userById = userData.find((user) => user.id === parseInt(id, 10));
@@ -88,16 +90,27 @@ const Profil: React.FC<ProfilProps> = () => {
       /**
        * Retrieve users activity
        */
-      const  userActivitys = userActivity();
-      const ActivityById = userActivitys.find((user)=>user.userId === parseInt(id,10))
-      setActivity(ActivityById)
+      const userActivitys = userActivity();
+      const ActivityById = userActivitys.find(
+        (user) => user.userId === parseInt(id, 10)
+      );
+      setActivity(ActivityById);
       /**
        * Retrieve Performance
        */
-
-       /**
+      const userPerformances = userPerformance();
+      const PerformanceById = userPerformances.find(
+        (user) => user.userId === parseInt(id, 10)
+      );
+      setPerformance(PerformanceById);
+      /**
        * Retrieve Average Sessions
        */
+      const userAverageSessions = userAverageSession();
+      const AverageSessionsById = userAverageSessions.find(
+        (user) => user.userId === parseInt(id, 10)
+      );
+      setAverageSessions(AverageSessionsById.sessions);
     }
   }, [id, infoUser, isBackendAccessible]);
 
