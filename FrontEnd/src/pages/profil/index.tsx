@@ -7,8 +7,9 @@ import {
   getDataUser,
   getPerformance,
   getActivity,
-   test,
-   isBackendAvailable,
+  userDatas,
+  isBackendAvailable,
+  userActivity,
 } from "../../helpers/services/services";
 
 import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
@@ -20,7 +21,7 @@ import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
 import BarChartComponent from "../../components/BarChart";
 import "./style.css";
- 
+
 interface UserInfo {
   userInfos: {
     firstName: string;
@@ -49,7 +50,9 @@ const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
 
-  const [isBackendAccessible, setIsBackendAccessible] = useState< boolean |null>(null);
+  const [isBackendAccessible, setIsBackendAccessible] = useState<
+    boolean | null
+  >(null);
   const [infoUser, setInfoUser] = useState<UserInfo | null>(null);
   const [averageSessions, setAverageSessions] = useState<Session[] | null>(
     null
@@ -58,37 +61,45 @@ const Profil: React.FC<ProfilProps> = () => {
   const [activity, setActivity] = useState<Activity[] | null>(null);
 
   useEffect(() => {
-    const isBackendReady= isBackendAvailable()
-    console.log("isBackendAvailable",isBackendReady)
-    setIsBackendAccessible(isBackendReady)
-    if(isBackendAccessible === true){
-    getDataUser(id).then((res) => setInfoUser(res.data.data));
-    getAverageSessions(id).then((res) =>
-      setAverageSessions(res.data.data.sessions)
-    );
-    getPerformance(id).then((res) => setPerformance(res.data.data));
-    getActivity(id).then((res) => setActivity(res.data.data));
-  }
-  else{
-    console.log("l back nai pas despo ")
-    const dataTest = test();
-  
-    console.log(id)
-    const userById = dataTest.find((user) => user.id === parseInt(id, 10));
-    console.log(userById);
- setInfoUser(userById)
-// Affichez les données de l'utilisateur trouvé dans la console
-console.log(userById);
+    const isBackendReady = isBackendAvailable();
 
+    setIsBackendAccessible(isBackendReady);
+    /**
+     * if backend is ready , use backend data
+     */
+    if (isBackendAccessible === true) {
+      getDataUser(id).then((res) => setInfoUser(res.data.data));
+      getAverageSessions(id).then((res) =>
+        setAverageSessions(res.data.data.sessions)
+      );
+      getPerformance(id).then((res) => setPerformance(res.data.data));
+      getActivity(id).then((res) => setActivity(res.data.data));
+      /**
+       * if backend is not ready , use mocks data
+       */
+    } else {
+      console.log("l back nai pas despo ");
+      /**
+       * Retrieve user data 
+       */
+      const userData = userDatas();
+      const userById = userData.find((user) => user.id === parseInt(id, 10));
+      setInfoUser(userById);
+      /**
+       * Retrieve users activity
+       */
+      const  userActivitys = userActivity();
+      const ActivityById = userActivitys.find((user)=>user.userId === parseInt(id,10))
+      setActivity(ActivityById)
+      /**
+       * Retrieve Performance
+       */
 
-
+       /**
+       * Retrieve Average Sessions
+       */
     }
-
   }, [id, infoUser, isBackendAccessible]);
-
-
-  
-  
 
   /**
    * radar
