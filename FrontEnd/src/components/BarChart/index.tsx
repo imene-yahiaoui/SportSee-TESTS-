@@ -1,3 +1,12 @@
+/**
+ * Component representing a bar chart for daily activity.
+ *
+ * @component
+ * @param {Object} props - The properties of the component.
+ * @param {Array} props.data - An array of objects representing daily activity data.
+ * @returns {JSX.Element} - The rendered BarChartComponent component.
+ */
+
 import React, { PureComponent } from "react";
 import {
   BarChart,
@@ -11,7 +20,6 @@ import {
 import { CustomTooltip } from "./CustomTooltip";
 import "./style.css";
 import PropTypes from "prop-types";
-   
 
 const formatDays = (tickItem, i) => {
   return i + 1;

@@ -1,3 +1,11 @@
+/**
+ * Radar chart component displaying performance data.
+ *
+ * @component
+ * @param {Object} props - The properties of the component.
+ * @param {Array} props.data - The data containing performance values.
+ * @returns {JSX.Element} - The rendered RadarChartComponent.
+ */
 import React, { PureComponent } from "react";
 import "./style.css";
 import {

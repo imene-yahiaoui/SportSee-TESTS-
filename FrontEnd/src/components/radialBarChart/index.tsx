@@ -1,3 +1,14 @@
+/**
+ * Radial bar chart component displaying the user's score.
+ *
+ * @component
+ * @param {Object} props - The properties of the component.
+ * @param {Object} props.data - The data containing the user's score.
+ * @param {number} props.data.todayScore - The user's score for today.
+ * @param {number} props.data.score - The user's score for today.
+ * @returns {JSX.Element} - The rendered RadialBarChartComponent.
+ */
+
 import React, { PureComponent } from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";

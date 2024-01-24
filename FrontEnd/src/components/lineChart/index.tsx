@@ -1,3 +1,12 @@
+/**
+ * Line chart component displaying the average session duration.
+ *
+ * @component
+ * @param {Object} props - The properties of the component.
+ * @param {Array} props.data - The data used to populate the line chart.
+ * @returns {JSX.Element} - The rendered LineCharte component.
+ */
+
 import {
   LineChart,
   Line,
@@ -12,7 +21,12 @@ import "./style.css";
 import PropTypes from "prop-types";
 
 export default class LineCharte extends PureComponent {
- 
+  /**
+   * Formats the label for each day.
+   *
+   * @param {number} day - The day number.
+   * @returns {string} - The formatted label.
+   */
 
   formatLabel = (day) => {
     if (day === 1) return "L";
@@ -26,7 +40,7 @@ export default class LineCharte extends PureComponent {
   };
   handleMouseOver = (index) => {
     setHoveredIndex(index);
-  }
+  };
   render() {
     const { data } = this.props;
 
@@ -55,18 +69,16 @@ export default class LineCharte extends PureComponent {
               dot={false}
             />
             <XAxis
-                 className={"XAxisLineChart"}
+              className={"XAxisLineChart"}
               dataKey="day"
               axisLine={false}
               tickLine={false}
               tick={{
                 fill: "rgba(255,255,255,0.6)",
                 fontSize: "0.75rem",
-              
               }}
               tickFormatter={this.formatLabel}
               tickMargin={20}
-               
             />
             <Tooltip content={<CustomTooltip />} cursor={false} />
             <YAxis hide domain={["dataMin-10", "dataMax+10"]} />
