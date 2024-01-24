@@ -49,6 +49,12 @@ interface Activity {
   calories: number;
 }
 
+/**
+ * @returns {JSX.Element} - Rendered Profil component.
+ * @throws {Error} - Redirects to a 404 page if the user is not accessible.
+ * @props {string} ProfilProps.id - The user ID obtained from the route parameters.
+ */
+
 const Profil: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
@@ -63,104 +69,103 @@ const Profil: React.FC<ProfilProps> = () => {
   const [performance, setPerformance] = useState<Performance[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-    const isBackendReady = isBackendAvailable();
+      const isBackendReady = isBackendAvailable();
 
-    setIsBackendAccessible(isBackendReady);
-    /**
-     * if backend is ready , use backend data
-     */
-    if (isBackendAccessible === true) {
-      getDataUser(id).then((res) => setInfoUser(res.data.data));
-
-      getAverageSessions(id).then((res) =>
-        setAverageSessions(res.data.data.sessions)
-      );
-
-      getPerformance(id).then((res) => setPerformance(res.data.data));
-
-      getActivity(id).then((res) => setActivity(res.data.data));
-
+      setIsBackendAccessible(isBackendReady);
       /**
-       * Check if the user is allowed to access the route based on the user's ID.
-       * The route is protected for specific user IDs (12, 18) or if the ID is null.
-       * @param {number} id - The user ID.
-       * @returns {boolean} - True if the user is allowed, false otherwise.
+       * if backend is ready , use backend data
        */
-      if (
-        parseInt(id, 10) === 12 ||
-        parseInt(id, 10) === 18 ||
-        parseInt(id, 10) === null
-      ) {
-        setIsUserAccessible(true);
-      } else {
-        setIsUserAccessible(false);
+      if (isBackendAccessible === true) {
+        getDataUser(id).then((res) => setInfoUser(res.data.data));
+
+        getAverageSessions(id).then((res) =>
+          setAverageSessions(res.data.data.sessions)
+        );
+
+        getPerformance(id).then((res) => setPerformance(res.data.data));
+
+        getActivity(id).then((res) => setActivity(res.data.data));
+
+        /**
+         * Check if the user is allowed to access the route based on the user's ID.
+         * The route is protected for specific user IDs (12, 18) or if the ID is null.
+         * @param {number} id - The user ID.
+         * @returns {boolean} - True if the user is allowed, false otherwise.
+         */
+        if (
+          parseInt(id, 10) === 12 ||
+          parseInt(id, 10) === 18 ||
+          parseInt(id, 10) === null
+        ) {
+          setIsUserAccessible(true);
+        } else {
+          setIsUserAccessible(false);
+        }
+        /**
+         * if backend is not ready , use mocks data
+         */
+      } else if (isBackendAccessible === false) {
+        console.log("l back nai pas despo ");
+        /**
+         * Retrieve user data
+         */
+        const userData = userDatas();
+        const userById = userData.find((user) => user.id === parseInt(id, 10));
+        /**
+         * Check if the user is allowed to access the route based on the user's ID.
+         * If the user with the specified ID is not found in the JSON file, set accessibility to false.
+         */
+        if (!userById) {
+          setIsUserAccessible(false);
+        } else {
+          setInfoUser(userById);
+          /**
+           * Retrieve users activity
+           */
+          const userActivitys = userActivity();
+          const ActivityById = userActivitys.find(
+            (user) => user.userId === parseInt(id, 10)
+          );
+          setActivity(ActivityById);
+          /**
+           * Retrieve Performance
+           */
+          const userPerformances = userPerformance();
+          const PerformanceById = userPerformances.find(
+            (user) => user.userId === parseInt(id, 10)
+          );
+          setPerformance(PerformanceById);
+          /**
+           * Retrieve Average Sessions
+           */
+          const userAverageSessions = userAverageSession();
+          const AverageSessionsById = userAverageSessions.find(
+            (user) => user.userId === parseInt(id, 10)
+          );
+          setAverageSessions(AverageSessionsById.sessions);
+        }
       }
-      /**
-       * if backend is not ready , use mocks data
-       */
-    } else if (isBackendAccessible === false) {
-      console.log("l back nai pas despo ");
-      /**
-       * Retrieve user data
-       */
-      const userData = userDatas();
-      const userById = userData.find((user) => user.id === parseInt(id, 10));
-      /**
-       * Check if the user is allowed to access the route based on the user's ID.
-       * If the user with the specified ID is not found in the JSON file, set accessibility to false.
-       */
-      if (!userById) {
-        setIsUserAccessible(false);
-      } else {
-        setInfoUser(userById);
-        /**
-         * Retrieve users activity
-         */
-        const userActivitys = userActivity();
-        const ActivityById = userActivitys.find(
-          (user) => user.userId === parseInt(id, 10)
-        );
-        setActivity(ActivityById);
-        /**
-         * Retrieve Performance
-         */
-        const userPerformances = userPerformance();
-        const PerformanceById = userPerformances.find(
-          (user) => user.userId === parseInt(id, 10)
-        );
-        setPerformance(PerformanceById);
-        /**
-         * Retrieve Average Sessions
-         */
-        const userAverageSessions = userAverageSession();
-        const AverageSessionsById = userAverageSessions.find(
-          (user) => user.userId === parseInt(id, 10)
-        );
-        setAverageSessions(AverageSessionsById.sessions);
-      }
-    }
 
+      const loadingTimer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      return () => clearTimeout(loadingTimer);
+    };
+
+    setIsLoading(true);
     const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+      fetchData();
+    }, 0);
     return () => clearTimeout(loadingTimer);
-  };
-
-  setIsLoading(true);
-  const loadingTimer = setTimeout(() => {
-    fetchData();
-  }, 0);
-  return () => clearTimeout(loadingTimer);
-
- 
   }, [id, infoUser, isBackendAccessible]);
 
+
   /**
-   * radar
+   * Radar chart data formatted for rendering
    */
   const formatLabelKind = (kind) => {
     switch (kind) {
@@ -186,7 +191,9 @@ const Profil: React.FC<ProfilProps> = () => {
       value: item.value,
     }))
     .reverse();
-
+ /**
+   * Nutrition data for rendering
+   */
   const nutritionData = [
     {
       icon: CaloriesIcon,
@@ -209,7 +216,7 @@ const Profil: React.FC<ProfilProps> = () => {
       keyData: infoUser?.keyData?.lipidCount,
     },
   ];
-  console.log(isLoading)
+  console.log(isLoading);
   if (!isUserAccessible) {
     // Redirect to the 404 page
     return <Navigate to="/*" />;
@@ -218,9 +225,7 @@ const Profil: React.FC<ProfilProps> = () => {
       <div className="profil">
         {isLoading ? (
           <div className="loading-container">
-            <Loading
-              
-            />
+            <Loading />
           </div>
         ) : (
           <>
