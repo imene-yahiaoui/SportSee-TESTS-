@@ -1,3 +1,9 @@
+/**
+ * Vertical navigation component displaying icons and copyright information.
+ *
+ * @component
+ * @returns {JSX.Element} - The rendered Verticalnavigation component.
+ */
 import Icon from "../../components/icone";
 import "./style.css";
 import Yoga from "../../assets/images/yoga.svg";

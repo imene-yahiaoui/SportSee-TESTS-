@@ -14,7 +14,7 @@ import "./style.css";
 const Icone: React.FC = ({ icon }) => {
   return (
     <div className="icon">
-      <Link to="/">
+      <Link to="#">
         <img className="icon-color" src={icon} alt="icon" />
       </Link>
     </div>

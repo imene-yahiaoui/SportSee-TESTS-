@@ -1,3 +1,9 @@
+/**
+ * Header component displaying the logo and navigation links.
+ *
+ * @component
+ * @returns {JSX.Element} - The rendered Header component.
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
