@@ -23,7 +23,7 @@ import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
 import BarChartComponent from "../../components/BarChart";
 import "./style.css";
-import { BallTriangle } from "react-loader-spinner";
+import Loading from "../../helpers/loading";
 
 interface UserInfo {
   userInfos: {
@@ -63,9 +63,10 @@ const Profil: React.FC<ProfilProps> = () => {
   const [performance, setPerformance] = useState<Performance[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const fetchData = async () => {
     const isBackendReady = isBackendAvailable();
 
     setIsBackendAccessible(isBackendReady);
@@ -146,8 +147,16 @@ const Profil: React.FC<ProfilProps> = () => {
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
     return () => clearTimeout(loadingTimer);
+  };
+
+  setIsLoading(true);
+  const loadingTimer = setTimeout(() => {
+    fetchData();
+  }, 0);
+  return () => clearTimeout(loadingTimer);
+
+ 
   }, [id, infoUser, isBackendAccessible]);
 
   /**
@@ -200,6 +209,7 @@ const Profil: React.FC<ProfilProps> = () => {
       keyData: infoUser?.keyData?.lipidCount,
     },
   ];
+  console.log(isLoading)
   if (!isUserAccessible) {
     // Redirect to the 404 page
     return <Navigate to="/*" />;
@@ -208,15 +218,8 @@ const Profil: React.FC<ProfilProps> = () => {
       <div className="profil">
         {isLoading ? (
           <div className="loading-container">
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color="#4fa94d"
-              ariaLabel="ball-triangle-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
+            <Loading
+              
             />
           </div>
         ) : (
