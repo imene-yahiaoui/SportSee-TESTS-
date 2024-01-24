@@ -1,5 +1,10 @@
+/**
+ * NotFound Component
+ *
+ * The NotFound component represents the 404 error page when a user tries to access an
+ * @returns {JSX.Element} - The rendered NotFound component.
+ */
 import React from "react";
-
 import "./style.css";
 
 const NotFound: React.FC = () => {

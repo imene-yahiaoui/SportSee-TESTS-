@@ -1,7 +1,10 @@
+
+/**
+ * Home Component
+ * @returns {JSX.Element} - The rendered Home component.
+ */
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-
-
 import "./style.css";
 import { isBackendAvailable } from "../../helpers/services/services";
 const Home: React.FC<HomeProps> = () => {
@@ -10,7 +13,9 @@ const Home: React.FC<HomeProps> = () => {
     boolean | null
   >(null);
    
-
+ /**
+   * useEffect hook to check backend is accessibe
+   */
   useEffect(() => {
     const isBackendReady = isBackendAvailable();
     setIsBackendAccessible(isBackendReady);

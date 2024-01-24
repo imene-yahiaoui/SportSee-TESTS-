@@ -50,6 +50,7 @@ interface Activity {
 }
 
 /**
+ * Profil Component
  * @returns {JSX.Element} - Rendered Profil component.
  * @throws {Error} - Redirects to a 404 page if the user is not accessible.
  * @props {string} ProfilProps.id - The user ID obtained from the route parameters.

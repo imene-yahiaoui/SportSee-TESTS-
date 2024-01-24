@@ -1,3 +1,8 @@
+/**
+ * App Component
+ * @returns {JSX.Element} - The rendered App component.
+ */
+
 import "./App.css";
 import RoutesPath from "./helpers/routesPath";
 import React from "react";

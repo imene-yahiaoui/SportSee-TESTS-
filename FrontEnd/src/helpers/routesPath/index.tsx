@@ -1,3 +1,9 @@
+/**
+ * Component representing the main routes of the application.
+ *
+ * @component
+ * @returns {JSX.Element} - The rendered RoutesPath component.
+ */
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../../pages/home";
