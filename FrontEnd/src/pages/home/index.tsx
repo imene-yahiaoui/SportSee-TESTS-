@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
+
 import "./style.css";
 import { isBackendAvailable } from "../../helpers/services/services";
 const Home: React.FC<HomeProps> = () => {
@@ -8,13 +9,16 @@ const Home: React.FC<HomeProps> = () => {
   const [isBackendAccessible, setIsBackendAccessible] = useState<
     boolean | null
   >(null);
+   
+
   useEffect(() => {
     const isBackendReady = isBackendAvailable();
     setIsBackendAccessible(isBackendReady);
   }, []);
-
+ 
   return (
     <div>
+ 
       <h1> Bienvenue sur SportSee</h1>
       <div className="users">
         {isBackendAccessible ? (

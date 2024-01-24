@@ -23,6 +23,7 @@ import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
 import BarChartComponent from "../../components/BarChart";
 import "./style.css";
+import { BallTriangle } from "react-loader-spinner";
 
 interface UserInfo {
   userInfos: {
@@ -62,6 +63,7 @@ const Profil: React.FC<ProfilProps> = () => {
   const [performance, setPerformance] = useState<Performance[] | null>(null);
   const [activity, setActivity] = useState<Activity[] | null>(null);
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const isBackendReady = isBackendAvailable();
@@ -140,6 +142,12 @@ const Profil: React.FC<ProfilProps> = () => {
         setAverageSessions(AverageSessionsById.sessions);
       }
     }
+
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(loadingTimer);
   }, [id, infoUser, isBackendAccessible]);
 
   /**
@@ -198,27 +206,46 @@ const Profil: React.FC<ProfilProps> = () => {
   } else {
     return (
       <div className="profil">
-        <User userName={infoUser?.userInfos?.firstName} />
-        <div className="container">
-          <section className="profilStatistics">
-            {activity && <BarChartComponent data={activity?.sessions} />}
-            <div className="statsData">
-              {averageSessions && <LineCharte data={averageSessions} />}
-              {radarChartData && <RadarChartComponent data={radarChartData} />}
-              {infoUser && <RadialBarChartComponent data={infoUser} />}
+        {isLoading ? (
+          <div className="loading-container">
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          </div>
+        ) : (
+          <>
+            <User userName={infoUser?.userInfos?.firstName} />
+            <div className="container">
+              <section className="profilStatistics">
+                {activity && <BarChartComponent data={activity?.sessions} />}
+                <div className="statsData">
+                  {averageSessions && <LineCharte data={averageSessions} />}
+                  {radarChartData && (
+                    <RadarChartComponent data={radarChartData} />
+                  )}
+                  {infoUser && <RadialBarChartComponent data={infoUser} />}
+                </div>
+              </section>
+              <section className="SectionNutrition">
+                {nutritionData.map((nutrition, index) => (
+                  <Nutrition
+                    key={index}
+                    Nutritionicon={nutrition.icon}
+                    NutritionType={nutrition.type}
+                    keyData={nutrition.keyData}
+                  />
+                ))}
+              </section>
             </div>
-          </section>
-          <section className="SectionNutrition">
-            {nutritionData.map((nutrition, index) => (
-              <Nutrition
-                key={index}
-                Nutritionicon={nutrition.icon}
-                NutritionType={nutrition.type}
-                keyData={nutrition.keyData}
-              />
-            ))}
-          </section>
-        </div>
+          </>
+        )}
       </div>
     );
   }
