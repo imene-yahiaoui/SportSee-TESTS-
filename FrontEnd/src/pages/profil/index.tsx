@@ -69,90 +69,29 @@ const Profil: React.FC<ProfilProps> = () => {
   const [networkNotFound, setNetworkNotFound] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const isBackendAccessibleResult = await CallBackend();
         setIsBackendAccessible(isBackendAccessibleResult);
-        console.log("isBackendAccessible", isBackendAccessible)
-           if (
-            parseInt(id, 10) === 12 ||
-            parseInt(id, 10) === 18 ||
-            parseInt(id, 10) === 1 ||
-            parseInt(id, 10) === 2 ||
-            parseInt(id, 10) === null
-          ) {
-            setIsUserAccessible(true);
-          } else {
-            setIsUserAccessible(false);
-          }
-   if ((isBackendAccessible === false) && (parseInt(id, 10) === 12 || parseInt(id, 10) === 18)) {
-            setNetworkNotFound(true);
-          }
-        else  if ((isBackendAccessible === true) && (parseInt(id, 10) === 12 || parseInt(id, 10) === 18)) {
-         
-            getDataUser(id).then((res) => setInfoUser(res.data.data));
-
-            getAverageSessions(id).then((res) =>
-              setAverageSessions(res.data.data.sessions)
-            );
-  
-            getPerformance(id).then((res) => setPerformance(res.data.data));
-  
-            getActivity(id).then((res) => setActivity(res.data.data));
-          }
-      
-          /**
-           * Check if the user is allowed to access the route based on the user's ID.
-           * The route is protected for specific user IDs (12, 18) or if the ID is null.
-           * @param {number} id - The user ID.
-           * @returns {boolean} - True if the user is allowed, false otherwise.
-           */
-       
-       
-          else if ((isBackendAccessible === true || isBackendAccessible ===false) && (parseInt(id, 10) === 1 || parseInt(id, 10) === 2)) {
-        {
-         
-          
-          const userData = userDatas();
-          const userById = userData.find(
-            (user) => user.id === parseInt(id, 10)
-          );
-          /**
-           * Check if the user is allowed to access the route based on the user's ID.
-           * If the user with the specified ID is not found in the JSON file, set accessibility to false.
-           */
-        
-            setInfoUser(userById);
-            /**
-             * Retrieve users activity
-             */
-            const userActivitys = userActivity();
-            const ActivityById = userActivitys.find(
-              (user) => user.userId === parseInt(id, 10)
-            );
-            setActivity(ActivityById);
-            /**
-             * Retrieve Performance
-             */
-            const userPerformances = userPerformance();
-            const PerformanceById = userPerformances.find(
-              (user) => user.userId === parseInt(id, 10)
-            );
-            setPerformance(PerformanceById);
-            /**
-             * Retrieve Average Sessions
-             */
-            const userAverageSessions = userAverageSession();
-            const AverageSessionsById = userAverageSessions.find(
-              (user) => user.userId === parseInt(id, 10)
-            );
-            setAverageSessions(AverageSessionsById.sessions);
-          }
+        console.log("isBackendAccessible", isBackendAccessible);
+        const isApiUser = [12, 18].includes(parseInt(id, 10));
+        const isMockUser = [1, 2].includes(parseInt(id, 10));
+        if (isApiUser || isMockUser || parseInt(id, 10) === null) {
+          setIsUserAccessible(true);
+        } else {
+          setIsUserAccessible(false);
         }
-
-
+        if (isBackendAccessible === false && isApiUser) {
+          setNetworkNotFound(true);
+        } else if (isBackendAccessible === true && isApiUser) {
+          fetchDataForApiUser(id);
+        } else if (
+          (isBackendAccessible === true || isBackendAccessible === false) &&
+          isMockUser
+        ) {
+          fetchDataForMockUser(id);
+        }
         const loadingTimer = setTimeout(() => {
           setIsLoading(false);
         }, 2000);
@@ -169,7 +108,51 @@ const Profil: React.FC<ProfilProps> = () => {
 
     fetchData();
   }, [id, isBackendAccessible]);
+  //fetch datas
+  const fetchDataForApiUser = async (userId) => {
+    try {
+      const userData = await getDataUser(userId);
+      setInfoUser(userData.data.data);
 
+      const averageSessionsData = await getAverageSessions(userId);
+      setAverageSessions(averageSessionsData.data.data.sessions);
+
+      const performanceData = await getPerformance(userId);
+      setPerformance(performanceData.data.data);
+
+      const activityData = await getActivity(userId);
+      setActivity(activityData.data.data);
+    } catch (error) {
+      console.error("Error fetching API user data:", error);
+    }
+  };
+
+  const fetchDataForMockUser = (userId) => {
+    const userData = userDatas();
+    const userById = userData.find((user) => user.id === parseInt(userId, 10));
+
+    setInfoUser(userById);
+
+    const userActivitys = userActivity();
+    const ActivityById = userActivitys.find(
+      (user) => user.userId === parseInt(userId, 10)
+    );
+    setActivity(ActivityById);
+
+    const userPerformances = userPerformance();
+    const PerformanceById = userPerformances.find(
+      (user) => user.userId === parseInt(userId, 10)
+    );
+    setPerformance(PerformanceById);
+
+    const userAverageSessions = userAverageSession();
+    const AverageSessionsById = userAverageSessions.find(
+      (user) => user.userId === parseInt(userId, 10)
+    );
+    setAverageSessions(AverageSessionsById.sessions);
+  };
+
+  //
   const formatLabelKind = (kind) => {
     switch (kind) {
       case 1:
