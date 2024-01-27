@@ -1,3 +1,9 @@
+/**
+ * Profil Component
+ * @component
+ * @returns {JSX.Element} - The rendered Profil component.
+ */
+
 import React, { useEffect, useState } from "react";
 import User from "../../containers/user";
 import Nutrition from "../../components/nutrition";
@@ -72,9 +78,14 @@ const Profil: React.FC<ProfilProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        /**
+         * Hook state for the backend accessibility status.
+         * @type {boolean | null}
+         */
         const isBackendAccessibleResult = await CallBackend();
         setIsBackendAccessible(isBackendAccessibleResult);
         console.log("isBackendAccessible", isBackendAccessible);
+
         const isApiUser = [12, 18].includes(parseInt(id, 10));
         const isMockUser = [1, 2].includes(parseInt(id, 10));
         if (isApiUser || isMockUser || parseInt(id, 10) === null) {
@@ -108,7 +119,13 @@ const Profil: React.FC<ProfilProps> = () => {
 
     fetchData();
   }, [id, isBackendAccessible]);
-  //fetch datas
+  /**
+   * Fetches user data from API.
+   * @async
+   * @function
+   * @param {string} userId - The ID of the user.
+   * @returns {Promise<void>}
+   */
   const fetchDataForApiUser = async (userId) => {
     try {
       const userData = await getDataUser(userId);
@@ -126,7 +143,12 @@ const Profil: React.FC<ProfilProps> = () => {
       console.error("Error fetching API user data:", error);
     }
   };
-
+  /**
+   * Fetches user data from mock data.
+   * @function
+   * @param {string} userId - The ID of the user.
+   * @returns {void}
+   */
   const fetchDataForMockUser = (userId) => {
     const userData = userDatas();
     const userById = userData.find((user) => user.id === parseInt(userId, 10));
