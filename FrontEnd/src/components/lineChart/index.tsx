@@ -55,7 +55,7 @@ export default class LineCharte extends PureComponent {
           height="70%"
           className={"responsiveContainer"}
         >
-          <LineChart data={data}>
+          <LineChart data={data} >
             <Line
               type="natural"
               dataKey="sessionLength"
@@ -67,7 +67,10 @@ export default class LineCharte extends PureComponent {
                 r: 2,
               }}
               dot={false}
+            
+
             />
+            
             <XAxis
               className={"XAxisLineChart"}
               dataKey="day"
@@ -91,7 +94,9 @@ export default class LineCharte extends PureComponent {
                 <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
               </linearGradient>
             </defs>
+    
           </LineChart>
+          {/* <Scatter dataKey="sessionLength" fill="red" /> */}
         </ResponsiveContainer>
       </div>
     );

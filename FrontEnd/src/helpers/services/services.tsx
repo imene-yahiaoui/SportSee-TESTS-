@@ -11,14 +11,10 @@ import userData from "../../assets/mock/userData.json";
 import activity from "../../assets/mock/activity.json";
 import averageSessions from "../../assets/mock/average-sessions.json";
 import performance from "../../assets/mock/performance.json";
-/**
- * Function to check if the backend is available.
- *
- * @function
- * @returns {boolean} - True if the backend is available, false otherwise.
- */
+import { CallBackend } from "../../helpers/services/callBackend";
 
-export const isBackendAvailable = () => false;
+const isBackendAccessibleResult = await CallBackend();
+console.log(isBackendAccessibleResult);
 
 /**
  * Functions to return mock data.
@@ -39,7 +35,7 @@ export const userPerformance = () => performance;
  * @returns {Promise} - A promise that resolves to user data.
  */
 export const getDataUser = (userID) => {
-  if (isBackendAvailable()) {
+  if (isBackendAccessibleResult) {
     return axios.get(`http://localhost:3000/user/${userID}`);
   } else {
     return Promise.resolve(userData);
@@ -53,7 +49,7 @@ export const getDataUser = (userID) => {
  * @returns {Promise} - A promise that resolves to average sessions data.
  */
 export const getAverageSessions = (userID) => {
-  if (isBackendAvailable()) {
+  if (isBackendAccessibleResult) {
     return axios.get(`http://localhost:3000/user/${userID}/average-sessions`);
   } else {
     return Promise.resolve(averageSessions);
@@ -67,7 +63,7 @@ export const getAverageSessions = (userID) => {
  * @returns {Promise} - A promise that resolves to performance data.
  */
 export const getPerformance = (userID) => {
-  if (isBackendAvailable()) {
+  if (isBackendAccessibleResult) {
     return axios.get(`http://localhost:3000/user/${userID}/performance`);
   } else {
     return Promise.resolve(performance);
@@ -81,7 +77,7 @@ export const getPerformance = (userID) => {
  * @returns {Promise} - A promise that resolves to activity data.
  */
 export const getActivity = (userID) => {
-  if (isBackendAvailable()) {
+  if (isBackendAccessibleResult) {
     return axios.get(`http://localhost:3000/user/${userID}/activity`);
   } else {
     return Promise.resolve(activity);
