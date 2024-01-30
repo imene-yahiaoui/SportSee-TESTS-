@@ -3,7 +3,8 @@
   border-radius: 5px;
   height: 100%;
   background-color: rgba(255, 0, 0, 1);
- 
+  margin: 0 auto;
+
 }
 
 .chartLineTitle {
@@ -11,7 +12,8 @@
   font-size: 0.9375rem;
   font-weight: 500;
   opacity: 0.6;
-  padding-left: 10%;
+  padding-left: 2%;
+  position: absolute;
 }
 .responsiveContainer,
 .responsiveContainer {
@@ -34,4 +36,9 @@
   font-family: "roboto";
   display: flex;
   align-items: center;
+}
+ 
+.customXAxisLabel {
+  width: 80%;
+  margin: 0 auto;  
 }

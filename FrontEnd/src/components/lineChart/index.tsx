@@ -14,6 +14,7 @@ import {
   Tooltip,
   YAxis,
   ResponsiveContainer,
+  Rectangle,
 } from "recharts";
 import React, { PureComponent } from "react";
 import CustomTooltip from "./customTooltip";
@@ -41,9 +42,19 @@ export default class LineCharte extends PureComponent {
   handleMouseOver = (index) => {
     setHoveredIndex(index);
   };
+
   render() {
     const { data } = this.props;
-
+    // A darker rectangle following the mouse on the chart
+    const CustomCursor = ({ points }) => (
+      <Rectangle
+        fill="#000000"
+        opacity={0.2}
+        x={points[0]?.x}
+        width={500}
+        height={500}
+      />
+    );
     return (
       <div className="chartContainer">
         <h3 className="chartLineTitle">
@@ -51,11 +62,13 @@ export default class LineCharte extends PureComponent {
           sessions
         </h3>
         <ResponsiveContainer
-          width="90%"
-          height="70%"
+          width="100%"
+          height="100%"
           className={"responsiveContainer"}
         >
-          <LineChart data={data} >
+          <LineChart data={data} width="100%" height="100%">
+            <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
+
             <Line
               type="natural"
               dataKey="sessionLength"
@@ -67,12 +80,11 @@ export default class LineCharte extends PureComponent {
                 r: 2,
               }}
               dot={false}
-            
-
+              
             />
-            
+
             <XAxis
-              className={"XAxisLineChart"}
+              className={"customXAxisLabel"}
               dataKey="day"
               axisLine={false}
               tickLine={false}
@@ -81,9 +93,13 @@ export default class LineCharte extends PureComponent {
                 fontSize: "0.75rem",
               }}
               tickFormatter={this.formatLabel}
-              tickMargin={20}
+              tickMargin={0}
+               padding={{ left: 15, right: 15 }}
+       
+             
             />
-            <Tooltip content={<CustomTooltip />} cursor={false} />
+
+            <span className="LineChartSpan"> </span>
             <YAxis hide domain={["dataMin-10", "dataMax+10"]} />
             <defs>
               <linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
@@ -94,9 +110,7 @@ export default class LineCharte extends PureComponent {
                 <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
               </linearGradient>
             </defs>
-    
           </LineChart>
-          {/* <Scatter dataKey="sessionLength" fill="red" /> */}
         </ResponsiveContainer>
       </div>
     );
