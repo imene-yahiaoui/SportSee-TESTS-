@@ -8,6 +8,10 @@ import React, { useEffect, useState } from "react";
 import User from "../../containers/user";
 import Nutrition from "../../components/nutrition";
 import { useParams, Navigate } from "react-router-dom";
+import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
+import ProteinesIcon from "../../assets/images/NutritionIcons/protein-icon.png";
+import GlucidesIcon from "../../assets/images/NutritionIcons/carbs-icon.png";
+import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import {
   getAverageSessions,
   getDataUser,
@@ -19,10 +23,6 @@ import {
   userPerformance,
 } from "../../helpers/services/services";
 import CheckBackend from "../../helpers/services/checkBackend";
-import CaloriesIcon from "../../assets/images/NutritionIcons/calories-icon.png";
-import ProteinesIcon from "../../assets/images/NutritionIcons/protein-icon.png";
-import GlucidesIcon from "../../assets/images/NutritionIcons/carbs-icon.png";
-import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import LineCharte from "../../components/lineChart";
 import RadarChartComponent from "../../components/radarChart";
 import RadialBarChartComponent from "../../components/radialBarChart";
@@ -253,7 +253,7 @@ const Profil: React.FC<ProfilProps> = () => {
                 {nutritionData.map((nutrition, index) => (
                   <Nutrition
                     key={index}
-                    NutritionIcon={nutrition.icon}
+                    Nutritionicon={nutrition.icon}
                     NutritionType={nutrition.type}
                     keyData={nutrition.keyData}
                   />
