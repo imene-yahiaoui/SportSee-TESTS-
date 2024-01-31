@@ -31,7 +31,7 @@ export default class BarChartComponent extends PureComponent {
 
     return (
       <div className="Activity">
-        <ResponsiveContainer width="90%" height="80%">
+        <ResponsiveContainer width="90%" height="70%">
           <div className="headerBarChart">
             <p className="barChartTitle">Activité quotidienne</p>
             <div className="custom-tooltip-legend">

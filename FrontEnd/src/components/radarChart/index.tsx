@@ -28,9 +28,10 @@ export default class RadarChartComponent extends PureComponent {
         height="100%"
         className="RadarChartContainer"
       >
-        <RadarChart cx="50%" cy="50%" outerRadius={90} data={data}>
+        <RadarChart cx="50%" cy="50%" outerRadius={90} data={data} className="radar">
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
+          className="PolarAngleAxis"
             dataKey="kind"
             tick={{
               fontFamily: "Roboto",

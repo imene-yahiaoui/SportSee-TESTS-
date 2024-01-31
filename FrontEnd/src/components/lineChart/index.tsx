@@ -80,7 +80,6 @@ export default class LineCharte extends PureComponent {
                 r: 2,
               }}
               dot={false}
-              
             />
 
             <XAxis
@@ -94,9 +93,7 @@ export default class LineCharte extends PureComponent {
               }}
               tickFormatter={this.formatLabel}
               tickMargin={0}
-               padding={{ left: 15, right: 15 }}
-       
-             
+              padding={{ left: 15, right: 15 }}
             />
 
             <span className="LineChartSpan"> </span>

@@ -28,3 +28,16 @@
   justify-content: space-evenly;
   height: 300px;
 }
+
+@media (max-width: 1024px) {
+  .profil {
+    width: 98%;
+  }
+  .statsData {
+    height: 200px;
+  }
+  .SectionNutrition {
+    width: 28%;
+    gap: 19px;
+  }
+}

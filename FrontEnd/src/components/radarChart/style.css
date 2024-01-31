@@ -1,3 +1,10 @@
 .RadarChartContainer {
   background-color: #282d30;
+  border-radius: 5px;
+}
+@media (max-width: 1024px) {
+  .radar {
+    width: 90% !important;
+    margin: 0 auto;
+  }
 }

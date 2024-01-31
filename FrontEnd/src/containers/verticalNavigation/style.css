@@ -27,3 +27,11 @@
   color: white;
   width: 142px;
 }
+
+
+@media (max-width: 1024px) {
+.vertical-navigation {
+
+  padding-top: 20%;
+}
+}

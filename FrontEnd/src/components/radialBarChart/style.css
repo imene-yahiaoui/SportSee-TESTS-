@@ -22,7 +22,7 @@
   text-align: center;
   position: absolute;
   right: 40%;
-  bottom: 30%;
+  bottom: 23%;
   z-index: 2;
 }
 .scoreNumber {
@@ -31,4 +31,17 @@
 .scoreValue p {
   margin: 0;
   font-size: 16px;
+}
+.radialBarChartContiner {
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .scoreValue p {
+    font-size: 16px !important;
+  }
+  .scoreValue {
+    right: 35%;
+    bottom: 20%;
+  }
 }
