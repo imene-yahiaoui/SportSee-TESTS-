@@ -70,7 +70,7 @@
   background-color: red;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
 
 .barChartTitle {
  

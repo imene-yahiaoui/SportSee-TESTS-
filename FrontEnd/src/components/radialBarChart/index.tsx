@@ -15,7 +15,7 @@ import useMediaQuery from "../../helpers/MediaQuery";
 import "./style.css";
 
 const RadialBarChartComponent = ({ data }) => {
-  const matches = useMediaQuery("(max-width:1200px)");
+  const matches = useMediaQuery("(max-width:1400px)");
   const score = data.todayScore || data.score;
 
   const dataArray = [{ name: "score", value: score }];
@@ -23,7 +23,7 @@ const RadialBarChartComponent = ({ data }) => {
   return (
     <div className="RadialBarChart">
       <h3 className="RadialBarChartTitle">Score</h3>
-      <ResponsiveContainer width="90%" height="70%">
+      <ResponsiveContainer width="90%" height="80%">
         <div className="scoreValue">
           <p className="scoreNumber">{score * 100}%</p>
           <p>de votre</p>
@@ -40,7 +40,8 @@ const RadialBarChartComponent = ({ data }) => {
           <RadialBar
             data={[{ value: 1 }]}
             dataKey="value"
-            barSize={matches ? 130 : 180}
+            barSize={matches ? 130 : 150}
+           
             fill="#ffffff"
             isAnimationActive={false}
           />

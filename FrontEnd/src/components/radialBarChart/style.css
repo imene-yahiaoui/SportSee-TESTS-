@@ -25,9 +25,7 @@
   bottom: 23%;
   z-index: 2;
 }
-.scoreNumber {
-  font-size: 26px !important;
-}
+
 .scoreValue p {
   margin: 0;
   font-size: 16px;
@@ -36,10 +34,12 @@
   margin: 0 auto;
 }
 
-@media (max-width: 1024px) {
-  .scoreValue p {
-    font-size: 16px !important;
+@media (min-width: 1400px) {
+  .scoreNumber {
+    font-size: 26px !important;
   }
+}
+@media (max-width: 1370px) {
   .scoreValue {
     right: 35%;
     bottom: 20%;
