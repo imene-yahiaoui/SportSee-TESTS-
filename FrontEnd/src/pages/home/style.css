@@ -3,23 +3,27 @@
   flex-direction: row;
   gap: 20px;
 }
- 
 
- 
 .userBtn {
-    background: #FF0101;
-    border: 6%;
-   padding: 10px 20px;
+  background: #ff0101;
+  border: 6%;
+  padding: 10px 20px;
+}
+
+.userBtn:hover {
+  color: #fff;
+}
+.userBtn:hover:after {
+  left: 0;
+  width: 100%;
+}
+.userBtn:active {
+  top: 2px;
+}
+
+@media (max-width: 1023px) {
+  .users {
+    display: flex;
+    flex-direction: column;
   }
-   
-  .userBtn:hover {
-    color: #fff;
-  }
-  .userBtn:hover:after {
-    left: 0;
-    width: 100%;
-  }
-  .userBtn:active {
-    top: 2px;
-  }
-  
+}

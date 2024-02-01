@@ -28,10 +28,13 @@
   width: 142px;
 }
 
-
 @media (min-width: 1024px) {
-.vertical-navigation {
-
-  padding-top: 20%;
+  .vertical-navigation {
+    padding-top: 20%;
+  }
 }
+@media (max-width: 1023px) {
+  .vertical-navigation {
+    padding-top: 20%;
+  }
 }

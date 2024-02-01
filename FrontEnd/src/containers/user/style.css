@@ -1,3 +1,5 @@
+@import "../../assets/css/variables.css";
+
 .user {
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@
   font-size: 38px;
 }
 .user-name {
-  color: red;
+  color: var(--couleur-principale);
   font-size: 18px;
   font-weight: 400;
 }

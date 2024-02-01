@@ -1,7 +1,9 @@
+@import "../../assets/css/variables.css";
+
 .nutrition {
   width: 258px;
   height: 124px;
-  background: rgba(251, 251, 251, 1);
+  background-color: var(--couleur-secondaire);
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -35,5 +37,4 @@
     width: 200px;
     height: 104px;
   }
- 
-  }
+}

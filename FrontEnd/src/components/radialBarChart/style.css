@@ -1,6 +1,8 @@
+@import "../../assets/css/variables.css";
+
 .RadialBarChart {
   width: 30%;
-  background-color: #00000005;
+  background-color: var(--couleur-secondaire);
   border-radius: 5px;
 }
 .recharts-responsive-container {
@@ -43,5 +45,10 @@
   .scoreValue {
     right: 35%;
     bottom: 20%;
+  }
+}
+@media (max-width: 1023px) {
+  .scoreValue {
+    bottom: 30%;
   }
 }

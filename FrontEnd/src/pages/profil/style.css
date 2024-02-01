@@ -41,3 +41,20 @@
     gap: 19px;
   }
 }
+/* @media (min-width: 1024px) and (max-width: 1224px) { */
+
+@media (max-width: 1023px) {
+  .container {
+    flex-direction: column;
+    height: 100vh;
+  }
+  .profilStatistics {
+    width: 95%;
+    order: 2;
+  }
+  .SectionNutrition {
+    width: 95%;
+    flex-direction: row;
+    order: 1;
+  }
+}
