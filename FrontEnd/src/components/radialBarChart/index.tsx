@@ -12,12 +12,12 @@ import React from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";
+import { Score } from "../../helpers/modelisation";
 import "./style.css";
 
 const RadialBarChartComponent = ({ data }) => {
   const matches = useMediaQuery("(max-width:1400px)");
-  const score = data.todayScore || data.score;
-
+  const score = new Score(data).score;
   const dataArray = [{ name: "score", value: score }];
 
   return (
@@ -41,7 +41,6 @@ const RadialBarChartComponent = ({ data }) => {
             data={[{ value: 1 }]}
             dataKey="value"
             barSize={matches ? 130 : 150}
-           
             fill="#ffffff"
             isAnimationActive={false}
           />

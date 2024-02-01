@@ -18,6 +18,7 @@ import {
 } from "recharts";
 import React, { PureComponent } from "react";
 import CustomTooltip from "./customTooltip";
+import { FormatLabel } from "../../helpers/modelisation.tsx";
 import "./style.css";
 import PropTypes from "prop-types";
 
@@ -28,20 +29,6 @@ export default class LineCharte extends PureComponent {
    * @param {number} day - The day number.
    * @returns {string} - The formatted label.
    */
-
-  formatLabel = (day) => {
-    if (day === 1) return "L";
-    if (day === 2) return "M";
-    if (day === 3) return "M";
-    if (day === 4) return "J";
-    if (day === 5) return "V";
-    if (day === 6) return "S";
-    if (day === 7) return "D";
-    return day;
-  };
-  handleMouseOver = (index) => {
-    setHoveredIndex(index);
-  };
 
   render() {
     const { data } = this.props;
@@ -91,7 +78,7 @@ export default class LineCharte extends PureComponent {
                 fill: "rgba(255,255,255,0.6)",
                 fontSize: "0.75rem",
               }}
-              tickFormatter={this.formatLabel}
+              tickFormatter={(value) => FormatLabel.format(value)}
               tickMargin={0}
               padding={{ left: 15, right: 15 }}
             />

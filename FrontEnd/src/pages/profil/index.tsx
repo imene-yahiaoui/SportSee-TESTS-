@@ -30,6 +30,7 @@ import BarChartComponent from "../../components/BarChart";
 import "./style.css";
 import Loading from "../../helpers/loading";
 import { CallBackend } from "../../helpers/services/callBackend";
+import { FormatLabelKind } from "../../helpers/modelisation.tsx";
 
 interface UserInfo {
   userInfos: {
@@ -74,6 +75,7 @@ const Profil: React.FC<ProfilProps> = () => {
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
   const [networkNotFound, setNetworkNotFound] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -141,6 +143,7 @@ const Profil: React.FC<ProfilProps> = () => {
       setActivity(activityData.data.data);
     } catch (error) {
       console.error("Error fetching API user data:", error);
+      setError(true);
     }
   };
   /**
@@ -149,54 +152,41 @@ const Profil: React.FC<ProfilProps> = () => {
    * @param {string} userId - The ID of the user.
    * @returns {void}
    */
-  const fetchDataForMockUser = (userId) => {
-    const userData = userDatas();
-    const userById = userData.find((user) => user.id === parseInt(userId, 10));
+  const fetchDataForMockUser = async (userId) => {
+    try {
+      const userData = userDatas();
+      const userById = userData.find(
+        (user) => user.id === parseInt(userId, 10)
+      );
 
-    setInfoUser(userById);
+      setInfoUser(userById);
 
-    const userActivitys = userActivity();
-    const ActivityById = userActivitys.find(
-      (user) => user.userId === parseInt(userId, 10)
-    );
-    setActivity(ActivityById);
+      const userActivitys = userActivity();
+      const ActivityById = userActivitys.find(
+        (user) => user.userId === parseInt(userId, 10)
+      );
+      setActivity(ActivityById);
 
-    const userPerformances = userPerformance();
-    const PerformanceById = userPerformances.find(
-      (user) => user.userId === parseInt(userId, 10)
-    );
-    setPerformance(PerformanceById);
+      const userPerformances = userPerformance();
+      const PerformanceById = userPerformances.find(
+        (user) => user.userId === parseInt(userId, 10)
+      );
+      setPerformance(PerformanceById);
 
-    const userAverageSessions = userAverageSession();
-    const AverageSessionsById = userAverageSessions.find(
-      (user) => user.userId === parseInt(userId, 10)
-    );
-    setAverageSessions(AverageSessionsById.sessions);
-  };
-
-  //
-  const formatLabelKind = (kind) => {
-    switch (kind) {
-      case 1:
-        return "Cardio";
-      case 2:
-        return "Energie";
-      case 3:
-        return "Endurance";
-      case 4:
-        return "Force";
-      case 5:
-        return "Vitesse";
-      case 6:
-        return "Intensité";
-      default:
-        return kind;
+      const userAverageSessions = userAverageSession();
+      const AverageSessionsById = userAverageSessions.find(
+        (user) => user.userId === parseInt(userId, 10)
+      );
+      setAverageSessions(AverageSessionsById.sessions);
+    } catch (error) {
+      console.error("Error fetching Mock ", error);
+      setError(true);
     }
   };
 
   const radarChartData = performance?.data
     .map((item) => ({
-      kind: formatLabelKind(item.kind),
+      kind: FormatLabelKind.format(item.kind),
       value: item.value,
     }))
     .reverse();
@@ -228,6 +218,14 @@ const Profil: React.FC<ProfilProps> = () => {
     return <Navigate to="/*" />;
   } else if (networkNotFound) {
     return <CheckBackend />;
+  } else if (error) {
+    return (
+      <div>
+        <p className="errBackend">
+          Une erreur s'est produite lors de la récupération des données.
+        </p>
+      </div>
+    );
   } else {
     return (
       <div className="profil">
