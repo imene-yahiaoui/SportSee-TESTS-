@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CallBackend } from "../../helpers/services/callBackend";
-
+import "./style.css"
 function CheckBackend() {
   const [isAccessible, setIsAccessible] = useState<boolean | null>(null);
 
@@ -23,8 +23,8 @@ function CheckBackend() {
       {isAccessible === null && (
         <p>Vérification de l'accessibilité du backend...</p>
       )}
-      {isAccessible === true && <p>Le backend est accessible.</p>}
-      {isAccessible === false && <p>Le backend n'est pas accessible.</p>}
+      {/* {isAccessible === true && <p>Le backend est accessible.</p>} */}
+      {isAccessible === false && <p className="errBackend">Le backend n'est pas accessible.</p>}
     </div>
   );
 }

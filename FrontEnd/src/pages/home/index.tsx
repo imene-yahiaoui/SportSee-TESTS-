@@ -3,13 +3,9 @@
  * @returns {JSX.Element} - The rendered Home component.
  */
 import { Link } from "react-router-dom";
-
 import "./style.css";
-// import { CallBackend } from "../../helpers/services/callBackend";
 
-import CheckBackend from "../../helpers/services/checkBackend";
 const Home: React.FC<HomeProps> = () => {
-
   document.title = "Home- SportSee";
 
   return (
@@ -32,7 +28,6 @@ const Home: React.FC<HomeProps> = () => {
           </Link>
         </>
       </div>
-      <CheckBackend />
     </div>
   );
 };
