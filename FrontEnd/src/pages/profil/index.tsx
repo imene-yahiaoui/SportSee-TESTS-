@@ -30,31 +30,7 @@ import BarChartComponent from "../../components/BarChart";
 import "./style.css";
 import Loading from "../../helpers/loading";
 import { CallBackend } from "../../helpers/services/callBackend";
-import { FormatLabelKind } from "../../helpers/modelisation.tsx";
-
-interface UserInfo {
-  userInfos: {
-    firstName: string;
-    lastName: string;
-  };
-  score: number;
-  todayScore: number;
-}
-
-interface Session {
-  day: number;
-  sessionLength: number;
-}
-interface Performance {
-  day: number;
-  sessionLength: number;
-}
-
-interface Activity {
-  day: number;
-  kilogram: number;
-  calories: number;
-}
+import { FormatLabelKind, UserData } from "../../helpers/modelisation.tsx";
 
 interface ProfilProps {
   id: string;
@@ -66,12 +42,8 @@ const Profil: React.FC<ProfilProps> = () => {
   const [isBackendAccessible, setIsBackendAccessible] = useState<
     boolean | null
   >(null);
-  const [infoUser, setInfoUser] = useState<UserInfo | null>(null);
-  const [averageSessions, setAverageSessions] = useState<Session[] | null>(
-    null
-  );
-  const [performance, setPerformance] = useState<Performance[] | null>(null);
-  const [activity, setActivity] = useState<Activity[] | null>(null);
+  const [infoUser, setInfoUser] = useState<UserData | null>(null);
+
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
   const [networkNotFound, setNetworkNotFound] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -105,6 +77,7 @@ const Profil: React.FC<ProfilProps> = () => {
         ) {
           fetchDataForMockUser(id);
         }
+
         const loadingTimer = setTimeout(() => {
           setIsLoading(false);
         }, 2000);
@@ -128,24 +101,37 @@ const Profil: React.FC<ProfilProps> = () => {
    * @param {string} userId - The ID of the user.
    * @returns {Promise<void>}
    */
+
   const fetchDataForApiUser = async (userId) => {
     try {
-      const userData = await getDataUser(userId);
-      setInfoUser(userData.data.data);
+      const userDataResponse = await getDataUser(userId);
+      const userData = userDataResponse.data.data;
 
       const averageSessionsData = await getAverageSessions(userId);
-      setAverageSessions(averageSessionsData.data.data.sessions);
-
       const performanceData = await getPerformance(userId);
-      setPerformance(performanceData.data.data);
-
       const activityData = await getActivity(userId);
-      setActivity(activityData.data.data);
+
+      setInfoUser(
+        new UserData(
+          userData.id,
+          userData.score,
+          userData.todayScore,
+          userData.userInfos.firstName,
+          userData.keyData.calorieCount,
+          userData.keyData.proteinCount,
+          userData.keyData.carbohydrateCount,
+          userData.keyData.lipidCount,
+          averageSessionsData.data.data.sessions,
+          performanceData.data.data,
+          activityData.data.data
+        )
+      );
     } catch (error) {
       console.error("Error fetching API user data:", error);
       setError(true);
     }
   };
+
   /**
    * Fetches user data from mock data.
    * @function
@@ -158,33 +144,42 @@ const Profil: React.FC<ProfilProps> = () => {
       const userById = userData.find(
         (user) => user.id === parseInt(userId, 10)
       );
-
-      setInfoUser(userById);
-
       const userActivitys = userActivity();
+      const userPerformances = userPerformance();
       const ActivityById = userActivitys.find(
         (user) => user.userId === parseInt(userId, 10)
       );
-      setActivity(ActivityById);
 
-      const userPerformances = userPerformance();
       const PerformanceById = userPerformances.find(
         (user) => user.userId === parseInt(userId, 10)
       );
-      setPerformance(PerformanceById);
-
       const userAverageSessions = userAverageSession();
       const AverageSessionsById = userAverageSessions.find(
         (user) => user.userId === parseInt(userId, 10)
       );
-      setAverageSessions(AverageSessionsById.sessions);
+
+      setInfoUser(
+        new UserData(
+          userById.id,
+          userById.score,
+          userById.todayScore,
+          userById.userInfos.firstName,
+          userById.keyData.calorieCount,
+          userById.keyData.proteinCount,
+          userById.keyData.carbohydrateCount,
+          userById.keyData.lipidCount,
+          AverageSessionsById.sessions,
+          PerformanceById,
+          ActivityById
+        )
+      );
     } catch (error) {
       console.error("Error fetching Mock ", error);
       setError(true);
     }
   };
 
-  const radarChartData = performance?.data
+  const radarChartData = infoUser?.performance.data
     .map((item) => ({
       kind: FormatLabelKind.format(item.kind),
       value: item.value,
@@ -238,13 +233,17 @@ const Profil: React.FC<ProfilProps> = () => {
             <User userName={infoUser?.userInfos?.firstName} />
             <div className="container">
               <section className="profilStatistics">
-                {activity && <BarChartComponent data={activity?.sessions} />}
+                {infoUser?.activity.sessions && (
+                  <BarChartComponent data={infoUser?.activity.sessions} />
+                )}
                 <div className="statsData">
-                  {averageSessions && <LineCharte data={averageSessions} />}
+                  <LineCharte data={infoUser?.averageSessions} />
                   {radarChartData && (
                     <RadarChartComponent data={radarChartData} />
                   )}
-                  {infoUser && <RadialBarChartComponent data={infoUser} />}
+                  {infoUser?.score && (
+                    <RadialBarChartComponent score={infoUser?.score} />
+                  )}
                 </div>
               </section>
               <section className="SectionNutrition">

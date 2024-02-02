@@ -12,12 +12,12 @@ import React from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";
-import { Score } from "../../helpers/modelisation";
+ 
 import "./style.css";
 
-const RadialBarChartComponent = ({ data }) => {
+const RadialBarChartComponent = ({ score }) => {
   const matches = useMediaQuery("(max-width:1400px)");
-  const score = new Score(data).score;
+ 
   const dataArray = [{ name: "score", value: score }];
 
   return (
@@ -57,10 +57,7 @@ const RadialBarChartComponent = ({ data }) => {
 };
 
 RadialBarChartComponent.propTypes = {
-  data: PropTypes.shape({
-    todayScore: PropTypes.number,
-    score: PropTypes.number,
-  }).isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 export default RadialBarChartComponent;

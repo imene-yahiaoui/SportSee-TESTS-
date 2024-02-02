@@ -1,3 +1,56 @@
+class UserData {
+  id: number;
+  userInfos: {
+    firstName: string;
+    lastName: string;
+    age: number;
+  };
+  score: number | null;
+  todayScore: number | null;
+  keyData: {
+    calorieCount: number;
+    proteinCount: number;
+    carbohydrateCount: number;
+    lipidCount: number;
+  };
+  averageSessions: Session[] | null;
+  performance: Performance[] | null;
+  activity: Activity[] | null;
+
+  constructor(
+    id: number,
+    score: number | null,
+    todayScore: number | null,
+    firstName: string,
+    calorieCount: number,
+    proteinCount: number,
+    carbohydrateCount: number,
+    lipidCount: number,
+    averageSessions: Session[] | null,
+    performance: Performance[] | null,
+    activity: Activity[] | null
+  ) {
+    this.id = id;
+    if (todayScore !== null && todayScore !== undefined) {
+      this.score = todayScore;
+    } else {
+      this.score = score;
+    }
+    this.todayScore = this.score;
+
+    this.userInfos = { firstName, lastName: "", age: 30 };
+    this.keyData = {
+      calorieCount,
+      proteinCount,
+      carbohydrateCount,
+      lipidCount,
+    };
+    this.averageSessions = averageSessions;
+    this.performance = performance;
+    this.activity = activity;
+  }
+}
+
 class FormatLabelKind {
   static format = (kind) => {
     switch (kind) {
@@ -31,10 +84,6 @@ class FormatLabel {
     return day;
   };
 }
-class Score {
-  constructor(data) {
-    this.score = data.todayScore || data.score;
-  }
-}
+ 
 
-export { FormatLabelKind, FormatLabel, Score };
+export { UserData, FormatLabelKind, FormatLabel };
