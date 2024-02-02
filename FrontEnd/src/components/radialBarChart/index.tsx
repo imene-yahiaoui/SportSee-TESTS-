@@ -12,12 +12,12 @@ import React from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";
- 
+
 import "./style.css";
 
 const RadialBarChartComponent = ({ score }) => {
   const matches = useMediaQuery("(max-width:1400px)");
- 
+
   const dataArray = [{ name: "score", value: score }];
 
   return (

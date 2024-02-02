@@ -11,10 +11,6 @@ import userData from "../../assets/mock/userData.json";
 import activity from "../../assets/mock/activity.json";
 import averageSessions from "../../assets/mock/average-sessions.json";
 import performance from "../../assets/mock/performance.json";
-import { CallBackend } from "../../helpers/services/callBackend";
-
-const isBackendAccessibleResult = await CallBackend();
-console.log(isBackendAccessibleResult);
 
 /**
  * Functions to return mock data.
@@ -34,11 +30,12 @@ export const userPerformance = () => performance;
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to user data.
  */
-export const getDataUser = (userID) => {
-  if (isBackendAccessibleResult) {
-    return axios.get(`http://localhost:3000/user/${userID}`);
+export const getDataUser = async (isMockUser: boolean, userID: string) => {
+  if (!isMockUser) {
+    const response = await axios.get(`http://localhost:3000/user/${userID}`);
+    return response?.data?.data;
   } else {
-    return Promise.resolve(userData);
+    return Promise.resolve(userData.find((user) => user.id === +userID));
   }
 };
 /**
@@ -48,11 +45,16 @@ export const getDataUser = (userID) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to average sessions data.
  */
-export const getAverageSessions = (userID) => {
-  if (isBackendAccessibleResult) {
-    return axios.get(`http://localhost:3000/user/${userID}/average-sessions`);
+export const getAverageSessions = async (isMockUser, userID) => {
+  if (!isMockUser) {
+    const response = await axios.get(
+      `http://localhost:3000/user/${userID}/average-sessions`
+    );
+    return response?.data?.data;
   } else {
-    return Promise.resolve(averageSessions);
+    return Promise.resolve(
+      averageSessions.find((user) => user.userId === +userID)
+    );
   }
 };
 /**
@@ -62,11 +64,14 @@ export const getAverageSessions = (userID) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to performance data.
  */
-export const getPerformance = (userID) => {
-  if (isBackendAccessibleResult) {
-    return axios.get(`http://localhost:3000/user/${userID}/performance`);
+export const getPerformance = async (isMockUser, userID) => {
+  if (!isMockUser) {
+    const response = await axios.get(
+      `http://localhost:3000/user/${userID}/performance`
+    );
+    return response?.data?.data;
   } else {
-    return Promise.resolve(performance);
+    return Promise.resolve(performance.find((user) => user.userId === +userID));
   }
 };
 /**
@@ -76,10 +81,13 @@ export const getPerformance = (userID) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to activity data.
  */
-export const getActivity = (userID) => {
-  if (isBackendAccessibleResult) {
-    return axios.get(`http://localhost:3000/user/${userID}/activity`);
+export const getActivity = async (isMockUser, userID) => {
+  if (!isMockUser) {
+    const response = await axios.get(
+      `http://localhost:3000/user/${userID}/activity`
+    );
+    return response?.data?.data;
   } else {
-    return Promise.resolve(activity);
+    return Promise.resolve(activity.find((user) => user.userId === +userID));
   }
 };
