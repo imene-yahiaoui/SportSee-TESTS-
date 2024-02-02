@@ -106,7 +106,7 @@ const Profil: React.FC<ProfilProps> = () => {
       setError(true);
     }
   };
-  console.log(infoUser);
+   
   const radarChartData = infoUser?.performance?.data
     .map((item) => ({
       kind: FormatLabelKind.format(item.kind),
