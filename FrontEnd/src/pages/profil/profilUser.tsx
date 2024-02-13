@@ -16,12 +16,14 @@ import SectionNutrition from "../../containers/SectionNutrition";
 import { FormatLabelKind } from "../../helpers/modelisation.tsx";
 import useUserData from "../../helpers/services/fetchdata";
 import Error from "./error.tsx";
+import Loading from "../../helpers/loading";
+
 interface ProfilProps {
   chekError: boolean;
   id: string;
 }
 
-const ProfilUser: React.FC<ProfilProps> = () => {
+const ProfilUser: React.FC<ProfilProps> = (  ) => {
   document.title = "Profil - SportSee";
   const { id } = useParams();
 
@@ -69,6 +71,13 @@ const ProfilUser: React.FC<ProfilProps> = () => {
 
   if (!isUserAccessible) {
     return <Navigate to="/*" />;
+  } else if (Iserror === undefined ) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    );
+   
   } else if (Iserror) {
     return <Error />;
   } else {

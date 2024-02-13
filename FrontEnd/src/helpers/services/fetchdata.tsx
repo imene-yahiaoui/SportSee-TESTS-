@@ -18,7 +18,7 @@ import {
 
 const useUserData = (isMockUser, userId) => {
   const [infoUser, setInfoUser] = useState<UserData | null>(null);
-  const [Iserror, setIsError] = useState(false);
+  const [Iserror, setIsError] = useState();
 
   useEffect(() => {
     const fetchDataUser = async () => {
@@ -47,6 +47,7 @@ const useUserData = (isMockUser, userId) => {
             activityData
           )
         );
+        setIsError(false);
       } catch (e) {
         setIsError(true);
 
