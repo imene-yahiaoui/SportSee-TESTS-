@@ -101,5 +101,5 @@ export default class LineCharte extends PureComponent {
   }
 }
 LineCharte.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
 };

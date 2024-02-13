@@ -10,7 +10,6 @@ import {
 import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";
 const RadarChartComponent = ({ data }) => {
-
   const matches = useMediaQuery("(max-width:1300px)");
 
   return (
@@ -22,7 +21,7 @@ const RadarChartComponent = ({ data }) => {
       <RadarChart
         cx="50%"
         cy="50%"
-        outerRadius={matches ? 60 : 90}
+        outerRadius={matches ? 50 : 90}
         data={data}
         className="radar"
       >

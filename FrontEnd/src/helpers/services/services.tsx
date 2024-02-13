@@ -32,6 +32,7 @@ export const userPerformance = () => performance;
  */
 export const getDataUser = async (isMockUser: boolean, userID: string) => {
   if (!isMockUser) {
+    
     const response = await axios.get(`http://localhost:3000/user/${userID}`);
     return response?.data?.data;
   } else {
