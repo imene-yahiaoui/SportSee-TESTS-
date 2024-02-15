@@ -1,6 +1,4 @@
-import React from "react";
 import "./style.css";
-// import useUserData from "./services/fetchdata";
 
 const Error = () => {
   return (

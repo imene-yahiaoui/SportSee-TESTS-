@@ -9,8 +9,10 @@
 import React from "react";
 
 import "./style.css";
-
-const User: React.FC = ({ userName }) => {
+interface UserProps {
+  userName: string;
+}
+const User: React.FC <UserProps>= ({ userName }) => {
   return (
     <div className="user">
       <div className="user-top">

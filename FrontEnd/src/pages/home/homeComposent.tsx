@@ -4,8 +4,8 @@
  */
 import { Link } from "react-router-dom";
 import "./style.css";
-
-const HomeComponent: React.FC<HomeProps> = () => {
+interface HomeComponentProps {}
+const HomeComponent: React.FC<HomeComponentProps> = () => {
   document.title = "Home- SportSee";
 
   return (

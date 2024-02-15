@@ -52,7 +52,7 @@ class UserData {
 }
 
 class FormatLabelKind {
-  static format = (kind) => {
+  static format = (kind : number) => {
     switch (kind) {
       case 1:
         return "Cardio";
@@ -67,13 +67,13 @@ class FormatLabelKind {
       case 6:
         return "Intensité";
       default:
-        return kind;
+        return kind.toString();
     }
   };
 }
 
 class FormatLabel {
-  static format = (day) => {
+  static format = (day :number) => {
     if (day === 1) return "L";
     if (day === 2) return "M";
     if (day === 3) return "M";
@@ -81,7 +81,7 @@ class FormatLabel {
     if (day === 5) return "V";
     if (day === 6) return "S";
     if (day === 7) return "D";
-    return day;
+    return day.toString();
   };
 }
  

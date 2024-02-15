@@ -25,7 +25,7 @@ import PropTypes from "prop-types";
 interface Session {
   day: string;
   sessionLength: number;
-  // Add other properties as needed
+
 }
 
 interface LineCharteProps {

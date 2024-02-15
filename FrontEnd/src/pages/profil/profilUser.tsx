@@ -21,6 +21,7 @@ import Loading from "../../helpers/loading";
 interface ProfilProps {
   chekError: boolean;
   id: string;
+  data: Session[] | null | undefined;
 }
 
 const ProfilUser: React.FC<ProfilProps> = (  ) => {
@@ -86,7 +87,7 @@ const ProfilUser: React.FC<ProfilProps> = (  ) => {
         <User userName={infoUser?.userInfos?.firstName} />
         <div className="container">
           <section className="profilStatistics">
-            {infoUser?.activity.sessions && (
+            {infoUser?.activity?.sessions && (
               <BarChartComponent data={infoUser?.activity.sessions} />
             )}
             <div className="statsData">

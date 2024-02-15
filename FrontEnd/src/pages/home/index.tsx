@@ -1,14 +1,13 @@
- import HomeComposent from "./homeComposent.tsx"
- import "./style.css";
- import WithLoader from "../../helpers/withLoader";
+import HomeComposent from "./homeComposent.tsx";
+import "./style.css";
+import WithLoader from "../../helpers/withLoader";
+interface HomeProps {}
 
- const HomeWhitLoader = WithLoader(HomeComposent);
+const HomeWhitLoader = WithLoader(HomeComposent);
 const Home: React.FC<HomeProps> = () => {
-   
-
   return (
     <div>
-       <HomeWhitLoader/>
+      <HomeWhitLoader />
     </div>
   );
 };

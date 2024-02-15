@@ -20,12 +20,14 @@ import {
 import { CustomTooltip } from "./CustomTooltip";
 import "./style.css";
 import PropTypes from "prop-types";
-
+interface BarChartComponentProps {
+  data: Session[] | null | undefined;
+}
 const formatDays = (tickItem, i) => {
   return i + 1;
 };
 
-export default class BarChartComponent extends PureComponent {
+export default class BarChartComponent extends PureComponent<BarChartComponentProps> {
   render() {
     const { data } = this.props;
 

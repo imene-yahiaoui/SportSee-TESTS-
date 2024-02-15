@@ -16,12 +16,19 @@ import ProteinesIcon from "../../assets/images/NutritionIcons/protein-icon.png";
 import GlucidesIcon from "../../assets/images/NutritionIcons/carbs-icon.png";
 import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import Nutrition from "../../components/nutrition";
+
+interface SectionNutritionProps {
+  calorieCount: number;
+  proteinCount: number;
+  carbohydrateCount: number;
+  lipidCount: number;
+}
 const SectionNutrition: React.fc<SectionNutritionProps> = ({
   calorieCount,
   proteinCount,
   carbohydrateCount,
   lipidCount,
-}) => {
+}: SectionNutritionProps) => {
   const nutritionData = [
     {
       icon: CaloriesIcon,
