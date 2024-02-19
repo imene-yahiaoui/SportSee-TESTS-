@@ -10,8 +10,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./style.css";
-
-const Icone: React.FC = ({ icon }) => {
+interface IconeProps {
+  icon: string;
+}
+const Icone: React.FC<IconeProps> = ({ icon }) => {
   return (
     <div className="icon">
       <Link to="#">

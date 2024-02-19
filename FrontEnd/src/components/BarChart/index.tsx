@@ -6,8 +6,8 @@
  * @param {Array} props.data - An array of objects representing daily activity data.
  * @returns {JSX.Element} - The rendered BarChartComponent component.
  */
-
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
+import CustomTooltip from "./CustomTooltip";
 import {
   BarChart,
   Bar,
@@ -17,14 +17,16 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { CustomTooltip } from "./CustomTooltip";
+
 import "./style.css";
-import PropTypes from "prop-types";
+
 interface BarChartComponentProps {
-  data: Session[] | null | undefined;
+  data: [] | null | undefined;
 }
-const formatDays = (tickItem, i) => {
-  return i + 1;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const formatDays = (_tickItem: any, i: number) => {
+  return (i + 1).toString();
 };
 
 export default class BarChartComponent extends PureComponent<BarChartComponentProps> {
@@ -33,22 +35,22 @@ export default class BarChartComponent extends PureComponent<BarChartComponentPr
 
     return (
       <div className="Activity">
-        <ResponsiveContainer width="90%" height="70%">
-          <div className="headerBarChart">
-            <p className="barChartTitle">Activité quotidienne</p>
-            <div className="custom-tooltip-legend">
-              <div className="kilogram">
-                <div className="blackRound"></div>
-                <p className="desc">Poids (kg)</p>
-              </div>
+        <div className="headerBarChart">
+          <p className="barChartTitle">Activité quotidienne</p>
+          <div className="custom-tooltip-legend">
+            <div className="kilogram">
+              <div className="blackRound"></div>
+              <p className="desc">Poids (kg)</p>
+            </div>
 
-              <div className="kilogram">
-                <div className="redRound"></div>
-                <p className="desc">Calories brûlées (kCal)</p>
-              </div>
+            <div className="kilogram">
+              <div className="redRound"></div>
+              <p className="desc">Calories brûlées (kCal)</p>
             </div>
           </div>
-          <BarChart data={data} barSize={7} barGap={8}>
+        </div>
+        <ResponsiveContainer width="90%" height="70%">
+          <BarChart data={data || []} barSize={7} barGap={8}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
             <XAxis
@@ -111,7 +113,3 @@ export default class BarChartComponent extends PureComponent<BarChartComponentPr
     );
   }
 }
-
-BarChartComponent.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-};

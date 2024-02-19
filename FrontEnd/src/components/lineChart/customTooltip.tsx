@@ -7,7 +7,7 @@
  * @param {Array} props.payload - The payload data for the tooltip.
  * @returns {JSX.Element | null} - The rendered CustomTooltip component or null if not active.
  */
-import React from "react";
+
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {

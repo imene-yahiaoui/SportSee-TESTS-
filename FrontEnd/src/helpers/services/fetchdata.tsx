@@ -16,9 +16,10 @@ import {
   getActivity,
 } from "../../helpers/services/services";
 
-const useUserData = (isMockUser, userId) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useUserData = (isMockUser: any, userId: any) => {
   const [infoUser, setInfoUser] = useState<UserData | null>(null);
-  const [Iserror, setIsError] = useState();
+  const [Iserror, setIsError] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const fetchDataUser = async () => {

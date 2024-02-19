@@ -5,7 +5,6 @@
 
 import "./App.css";
 import RoutesPath from "./helpers/routesPath";
-import React from "react";
 import Header from "./containers/header";
 import Verticalnavigation from "./containers/verticalNavigation";
 function App() {

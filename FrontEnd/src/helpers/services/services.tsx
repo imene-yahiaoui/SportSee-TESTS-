@@ -32,7 +32,6 @@ export const userPerformance = () => performance;
  */
 export const getDataUser = async (isMockUser: boolean, userID: string) => {
   if (!isMockUser) {
-    
     const response = await axios.get(`http://localhost:3000/user/${userID}`);
     return response?.data?.data;
   } else {
@@ -46,7 +45,10 @@ export const getDataUser = async (isMockUser: boolean, userID: string) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to average sessions data.
  */
-export const getAverageSessions = async (isMockUser, userID) => {
+export const getAverageSessions = async (
+  isMockUser: boolean,
+  userID: string
+) => {
   if (!isMockUser) {
     const response = await axios.get(
       `http://localhost:3000/user/${userID}/average-sessions`
@@ -65,7 +67,7 @@ export const getAverageSessions = async (isMockUser, userID) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to performance data.
  */
-export const getPerformance = async (isMockUser, userID) => {
+export const getPerformance = async (isMockUser: boolean, userID: string) => {
   if (!isMockUser) {
     const response = await axios.get(
       `http://localhost:3000/user/${userID}/performance`
@@ -82,7 +84,7 @@ export const getPerformance = async (isMockUser, userID) => {
  * @param {number} userID - The ID of the user.
  * @returns {Promise} - A promise that resolves to activity data.
  */
-export const getActivity = async (isMockUser, userID) => {
+export const getActivity = async (isMockUser: boolean, userID: string) => {
   if (!isMockUser) {
     const response = await axios.get(
       `http://localhost:3000/user/${userID}/activity`

@@ -13,9 +13,9 @@ class UserData {
     carbohydrateCount: number;
     lipidCount: number;
   };
-  averageSessions: Session[] | null;
+  averageSessions: [] | null;
   performance: Performance[] | null;
-  activity: Activity[] | null;
+  activity: [] | null;
 
   constructor(
     id: number,
@@ -26,9 +26,9 @@ class UserData {
     proteinCount: number,
     carbohydrateCount: number,
     lipidCount: number,
-    averageSessions: Session[] | null,
+    averageSessions: [] | null,
     performance: Performance[] | null,
-    activity: Activity[] | null
+    activity: [] | null
   ) {
     this.id = id;
     if (todayScore !== null && todayScore !== undefined) {
@@ -52,7 +52,7 @@ class UserData {
 }
 
 class FormatLabelKind {
-  static format = (kind : number) => {
+  static format = (kind: number) => {
     switch (kind) {
       case 1:
         return "Cardio";
@@ -73,7 +73,7 @@ class FormatLabelKind {
 }
 
 class FormatLabel {
-  static format = (day :number) => {
+  static format = (day: number) => {
     if (day === 1) return "L";
     if (day === 2) return "M";
     if (day === 3) return "M";
@@ -84,6 +84,5 @@ class FormatLabel {
     return day.toString();
   };
 }
- 
 
 export { UserData, FormatLabelKind, FormatLabel };

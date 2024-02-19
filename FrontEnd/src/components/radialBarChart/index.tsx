@@ -8,7 +8,7 @@
  * @param {number} props.data.score - The user's score for today.
  * @returns {JSX.Element} - The rendered RadialBarChartComponent.
  */
-import React from "react";
+
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";

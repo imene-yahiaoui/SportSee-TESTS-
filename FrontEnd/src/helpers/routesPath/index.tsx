@@ -18,8 +18,8 @@ const RoutesPath: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profil/:id" element={<Profil />} />
-        <Route exact path="/settings" element={<Settings />} />
-        <Route exact path="/community" element={<Community />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/community" element={<Community />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>

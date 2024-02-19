@@ -2,12 +2,19 @@
  * CustomTooltip Component
  *
  * The CustomTooltip component represents a custom tooltip for chart elements.
- * @param {boolean} active - Indicates whether the tooltip is active.
- * @param {Object[]} payload - An array of payload objects containing data.
- * @param {number} payload[].value - The value to be displayed in the tooltip.
+ * @param {Object} props - The component props.
+ * @param {boolean} props.active - Indicates whether the tooltip is active.
+ * @param {Object[]} props.payload - An array of payload objects containing data.
+ * @param {number} props.payload[].value - The value to be displayed in the tooltip.
  * @returns {JSX.Element | null} - The rendered CustomTooltip component or null if not active.
  */
-export const CustomTooltip = ({ active, payload }) => {
+
+interface CustomTooltipProps {
+  active: boolean;
+  payload: { value: number }[];
+}
+
+const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="customTooltipBarChart">
@@ -18,3 +25,5 @@ export const CustomTooltip = ({ active, payload }) => {
   }
   return null;
 };
+
+export default CustomTooltip;
