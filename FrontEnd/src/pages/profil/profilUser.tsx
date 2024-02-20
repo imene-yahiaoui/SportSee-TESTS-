@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /**
  * Profil Component
  * @component
@@ -21,15 +22,15 @@ import Loading from "../../helpers/loading";
 interface ProfilProps {
   chekError: boolean;
   id: string;
-  data: Session[] | null | undefined;
+  data: [] | null | undefined;
 }
 
 const ProfilUser: React.FC<ProfilProps> = () => {
   document.title = "Profil - SportSee";
-  const { id } = useParams()?? { id: undefined };
+  const { id } = useParams() ?? { id: undefined };
 
   const isApiUser = [12, 18].includes(parseInt(id ?? "0", 10));
-const isMockUser = [1, 2].includes(parseInt(id ?? "0", 10));
+  const isMockUser = [1, 2].includes(parseInt(id ?? "0", 10));
   const { infoUser, Iserror } = useUserData(isMockUser, id);
 
   console.log("console dans profil", Iserror);

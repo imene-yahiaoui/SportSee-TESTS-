@@ -86,7 +86,7 @@ export default class BarChartComponent extends PureComponent<BarChartComponentPr
             <Tooltip
               offset={35}
               cursor={{ fill: "rgba(196, 196, 196, 0.5)" }}
-              content={<CustomTooltip />}
+              content={<CustomTooltip active={true} payload={[]} />}
             />
 
             <Bar

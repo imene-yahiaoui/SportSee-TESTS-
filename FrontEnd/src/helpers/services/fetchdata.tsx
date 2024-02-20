@@ -1,11 +1,11 @@
-  /**
-   * Fetches user data.
-   * @async
-   * @function
-   * @param {boolean} isMockUser - Indicates if the user is a mock user.
-   * @param {string} userId - The user's ID.
-   * @returns {Promise<void>}
-   */
+/**
+ * Fetches user data.
+ * @async
+ * @function
+ * @param {boolean} isMockUser - Indicates if the user is a mock user.
+ * @param {string} userId - The user's ID.
+ * @returns {Promise<void>}
+ */
 
 import { useState, useEffect } from "react";
 import { UserData } from "../../helpers/modelisation.tsx";

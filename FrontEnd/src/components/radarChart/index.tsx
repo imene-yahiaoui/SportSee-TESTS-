@@ -37,9 +37,6 @@ const RadarChartComponent: React.FC<RadarChartProps> = ({ data }) => {
             fontFamily: "Roboto",
             fontWeight: 500,
             fontSize: 12,
-            lineHeight: 24,
-            textAlign: "right",
-            position: "insideBottom",
             fill: "#FFFFFF",
           }}
           axisLine={{

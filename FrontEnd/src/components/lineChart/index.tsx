@@ -31,10 +31,10 @@ interface LineCharteProps {
   data: Session[] | null | undefined;
 }
 interface CustomCursorProps {
-   points: Array<{ x: number; y: number }>;
-   active?: boolean;
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-   payload?: any[];
+  points: Array<{ x: number; y: number }>;
+  active?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload?: any[];
 }
 
 const CustomCursor: React.FC<CustomCursorProps> = ({ points }) => (
@@ -50,7 +50,6 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ points }) => (
 const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
   // A darker rectangle following the mouse on the chart
 
-
   return (
     <div className="chartContainer">
       <h3 className="chartLineTitle">
@@ -63,7 +62,10 @@ const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
         className={"responsiveContainer"}
       >
         <LineChart data={data || []}>
-           <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
+          <Tooltip
+            content={<CustomTooltip active={true} payload={[]} />}
+            cursor={<CustomCursor points={[]} />}
+          />
           <Line
             type="natural"
             dataKey="sessionLength"
@@ -108,5 +110,4 @@ const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
   );
 };
 
- 
 export default LineCharte;

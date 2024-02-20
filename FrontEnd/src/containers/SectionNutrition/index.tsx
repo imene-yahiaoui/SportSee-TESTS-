@@ -18,12 +18,12 @@ import LipidesIcon from "../../assets/images/NutritionIcons/fat-icon.png";
 import Nutrition from "../../components/nutrition";
 
 interface SectionNutritionProps {
-  calorieCount: number;
-  proteinCount: number;
-  carbohydrateCount: number;
-  lipidCount: number;
+  calorieCount: number | undefined;
+  proteinCount: number | undefined;
+  carbohydrateCount: number | undefined;
+  lipidCount: number | undefined;
 }
-const SectionNutrition: React.fc<SectionNutritionProps> = ({
+const SectionNutrition: React.FC<SectionNutritionProps> = ({
   calorieCount,
   proteinCount,
   carbohydrateCount,
@@ -33,22 +33,23 @@ const SectionNutrition: React.fc<SectionNutritionProps> = ({
     {
       icon: CaloriesIcon,
       type: "Calories",
-      keyData: calorieCount,
+      keyData: calorieCount !== undefined ? calorieCount.toString() : "",
     },
     {
       icon: ProteinesIcon,
       type: "Proteines",
-      keyData: proteinCount,
+      keyData: proteinCount !== undefined ? proteinCount.toString() : "",
     },
     {
       icon: GlucidesIcon,
       type: "Glucides",
-      keyData: carbohydrateCount,
+      keyData:
+        carbohydrateCount !== undefined ? carbohydrateCount.toString() : "",
     },
     {
       icon: LipidesIcon,
       type: "Lipides",
-      keyData: lipidCount,
+      keyData: lipidCount !== undefined ? lipidCount.toString() : "",
     },
   ];
   return (
