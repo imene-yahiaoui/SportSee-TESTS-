@@ -8,8 +8,11 @@
  * @returns {JSX.Element | null} - The rendered CustomTooltip component or null if not active.
  */
 
-
-const CustomTooltip = ({ active, payload }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const CustomTooltip: React.FC<{ active: boolean; payload: any[] }> = ({
+  active,
+  payload,
+}) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
 

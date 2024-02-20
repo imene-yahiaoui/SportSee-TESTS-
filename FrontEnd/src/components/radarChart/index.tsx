@@ -7,9 +7,13 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-import PropTypes from "prop-types";
 import useMediaQuery from "../../helpers/MediaQuery";
-const RadarChartComponent = ({ data }) => {
+
+interface RadarChartProps {
+  data: { kind: string; value: number }[];
+}
+
+const RadarChartComponent: React.FC<RadarChartProps> = ({ data }) => {
   const matches = useMediaQuery("(max-width:1300px)");
 
   return (
@@ -32,8 +36,8 @@ const RadarChartComponent = ({ data }) => {
           tick={{
             fontFamily: "Roboto",
             fontWeight: 500,
-            fontSize: "12px",
-            lineHeight: "24px",
+            fontSize: 12,
+            lineHeight: 24,
             textAlign: "right",
             position: "insideBottom",
             fill: "#FFFFFF",
@@ -53,10 +57,6 @@ const RadarChartComponent = ({ data }) => {
       </RadarChart>
     </ResponsiveContainer>
   );
-};
-
-RadarChartComponent.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default RadarChartComponent;

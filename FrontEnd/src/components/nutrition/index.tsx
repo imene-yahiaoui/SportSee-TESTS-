@@ -10,8 +10,17 @@
  */
 import React from "react";
 import "./style.css";
+interface NutritionProps {
+  Nutritionicon: string;
+  NutritionType: string;
+  keyData: string;
+}
 
-const Nutrition: React.FC = ({ Nutritionicon, NutritionType, keyData }) => {
+const Nutrition: React.FC<NutritionProps> = ({
+  Nutritionicon,
+  NutritionType,
+  keyData,
+}) => {
   return (
     <div className="nutrition">
       <img className="NutritionContainer" src={Nutritionicon} alt="icon" />

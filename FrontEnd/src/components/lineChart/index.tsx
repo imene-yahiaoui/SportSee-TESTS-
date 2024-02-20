@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Line chart component displaying the average session duration.
  *
@@ -20,29 +21,35 @@ import {
 import CustomTooltip from "./customTooltip";
 import { FormatLabel } from "../../helpers/modelisation.tsx";
 import "./style.css";
-import PropTypes from "prop-types";
 
 interface Session {
   day: string;
   sessionLength: number;
-
 }
 
 interface LineCharteProps {
   data: Session[] | null | undefined;
 }
+interface CustomCursorProps {
+   points: Array<{ x: number; y: number }>;
+   active?: boolean;
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   payload?: any[];
+}
+
+const CustomCursor: React.FC<CustomCursorProps> = ({ points }) => (
+  <Rectangle
+    fill="#000000"
+    opacity={0.2}
+    x={points[0]?.x}
+    width={500}
+    height={500}
+  />
+);
 
 const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
   // A darker rectangle following the mouse on the chart
-  const CustomCursor = ({ points }) => (
-    <Rectangle
-      fill="#000000"
-      opacity={0.2}
-      x={points[0]?.x}
-      width={500}
-      height={500}
-    />
-  );
+
 
   return (
     <div className="chartContainer">
@@ -55,9 +62,8 @@ const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
         height="100%"
         className={"responsiveContainer"}
       >
-        <LineChart data={data} width="100%" height="100%">
-          <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
-
+        <LineChart data={data || []}>
+           <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
           <Line
             type="natural"
             dataKey="sessionLength"
@@ -102,8 +108,5 @@ const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
   );
 };
 
-LineCharte.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-};
-
+ 
 export default LineCharte;
