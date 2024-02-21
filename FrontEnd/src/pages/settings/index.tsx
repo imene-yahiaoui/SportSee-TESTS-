@@ -2,20 +2,21 @@
  * Settings Component
  * @returns {JSX.Element} - The rendered Settings component.
  */
-import SettingsComponent from "./settingsComponent";
+
 import "./style.css";
-import WithLoader from "../../helpers/withLoader";
 
 interface SettingsProps {}
-
-const SettingsWhitLoader = WithLoader(SettingsComponent);
 
 const Settings: React.FC<SettingsProps> = () => {
   document.title = "settings- SportSee";
 
   return (
-    <div>
-      <SettingsWhitLoader />
+    <div className="Settings">
+      <h2>Bientôt disponible</h2>
+      <p>
+        Nous travaillons activement sur cette page. Revenez bientôt pour
+        découvrir de nouvelles fonctionnalités.
+      </p>
     </div>
   );
 };

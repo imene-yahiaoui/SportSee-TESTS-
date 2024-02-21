@@ -2,16 +2,18 @@
  * Community Component
  * @returns {JSX.Element} - The rendered Community component.
  */
-import CommunityComponent from "./communityComponent";
 import "./style.css";
-import WithLoader from "../../helpers/withLoader";
+
 interface CommunityProps {}
-const CommunityWhitLoader = WithLoader(CommunityComponent);
 const Community: React.FC<CommunityProps> = () => {
   document.title = "Community- SportSee";
   return (
-    <div>
-      <CommunityWhitLoader />
+    <div className="community">
+      <h2>Bientôt disponible</h2>
+      <p>
+        Nous travaillons activement sur cette page. Revenez bientôt pour
+        découvrir de nouvelles fonctionnalités.
+      </p>
     </div>
   );
 };

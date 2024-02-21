@@ -3,7 +3,7 @@ import Loading from "./loading";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const WithLoader = (WrappedComponent: any) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (props: & { loading: boolean }) => {
+  return (props: { loading: boolean }) => {
     const { loading, ...restProps } = props;
     console.log("Props dans WithLoader:", props);
     // eslint-disable-next-line react-hooks/rules-of-hooks
