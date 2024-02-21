@@ -51,13 +51,11 @@ const useUserData = (isMockUser: any, userId: any) => {
         setIsError(false);
       } catch (e) {
         setIsError(true);
-
-        console.log("la dans le fetch jai mis sett err true  ");
       }
     };
 
     fetchDataUser();
-  }, [Iserror, isMockUser, userId]);
+  }, [isMockUser, userId]);
 
   return { infoUser, Iserror };
 };

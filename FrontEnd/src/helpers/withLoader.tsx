@@ -1,22 +1,14 @@
-import { useState, useEffect } from "react";
 import Loading from "./loading";
-// import useUserData from "./services/fetchData";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const WithLoader = (WrappedComponent: any) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (props: any) => {
+  return (props: & { loading: boolean }) => {
+    const { loading, ...restProps } = props;
     console.log("Props dans WithLoader:", props);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [loading, setLoading] = useState(true);
-    // const { Iserror } = useUserData();
-    // console.log("console dans leader", Iserror);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    }, [props]);
-    // if (loading ||Iserror === undefined ) {
+    console.log("la valure de loading dans whith loading ", loading);
+
     if (loading) {
       return (
         <div className="loading-container">
@@ -24,7 +16,7 @@ const WithLoader = (WrappedComponent: any) => {
         </div>
       );
     } else {
-      return <WrappedComponent {...props} />;
+      return <WrappedComponent {...restProps} />;
     }
   };
 };

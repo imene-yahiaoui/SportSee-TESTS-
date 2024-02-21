@@ -15,26 +15,24 @@ import BarChartComponent from "../../components/BarChart";
 import "./style.css";
 import SectionNutrition from "../../containers/SectionNutrition";
 import { FormatLabelKind } from "../../helpers/modelisation.tsx";
-import useUserData from "../../helpers/services/fetchdata";
-import Error from "./error.tsx";
-import Loading from "../../helpers/loading";
 
-interface ProfilProps {
+import Error from "./error.tsx";
+
+interface ProfilUserProps {
   chekError: boolean;
   id: string;
   data: [] | null | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  infoUser: any;
+  Iserror: boolean | undefined;
 }
 
-const ProfilUser: React.FC<ProfilProps> = () => {
+const ProfilUser: React.FC<ProfilUserProps> = ({ infoUser, Iserror }) => {
   document.title = "Profil - SportSee";
   const { id } = useParams() ?? { id: undefined };
 
   const isApiUser = [12, 18].includes(parseInt(id ?? "0", 10));
   const isMockUser = [1, 2].includes(parseInt(id ?? "0", 10));
-  const { infoUser, Iserror } = useUserData(isMockUser, id);
-
-  console.log("console dans profil", Iserror);
-
   const [isUserAccessible, setIsUserAccessible] = useState<boolean>(true);
 
   useEffect(() => {
@@ -44,7 +42,6 @@ const ProfilUser: React.FC<ProfilProps> = () => {
           setIsUserAccessible(false);
         }
       } catch (error) {
-        console.log("je suis dans lerror  de useeffect de profileUser");
         console.error(
           "Une erreur s'est produite lors de la récupération des données :",
           error
@@ -54,15 +51,6 @@ const ProfilUser: React.FC<ProfilProps> = () => {
 
     fetchData();
   }, [id, isApiUser, isMockUser]);
-
-  /**
-   * Fetches user data.
-   * @async
-   * @function
-   * @param {boolean} isMockUser - Indicates if the user is a mock user.
-   * @param {string} userId - The user's ID.
-   * @returns {Promise<void>}
-   */
 
   const radarChartData = infoUser?.performance?.data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,12 +62,6 @@ const ProfilUser: React.FC<ProfilProps> = () => {
 
   if (!isUserAccessible) {
     return <Navigate to="/*" />;
-  } else if (Iserror === undefined) {
-    return (
-      <div className="loading-container">
-        <Loading />
-      </div>
-    );
   } else if (Iserror) {
     return <Error />;
   } else {
