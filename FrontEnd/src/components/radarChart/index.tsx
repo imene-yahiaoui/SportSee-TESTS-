@@ -25,7 +25,7 @@ interface RadarChartProps {
 }
 
 const RadarChartComponent: React.FC<RadarChartProps> = ({ data }) => {
-  const matches = useMediaQuery("(max-width:1300px)");
+  const matches = useMediaQuery("(max-width:1025px)");
 
   return (
     <ResponsiveContainer
@@ -36,7 +36,7 @@ const RadarChartComponent: React.FC<RadarChartProps> = ({ data }) => {
       <RadarChart
         cx="50%"
         cy="50%"
-        outerRadius={matches ? 50 : 90}
+        outerRadius={matches ? 40 : 80}
         data={data}
         className="radar"
       >

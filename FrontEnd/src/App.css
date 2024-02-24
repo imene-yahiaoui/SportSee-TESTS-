@@ -10,7 +10,6 @@ body {
 }
 
 .RoutesPath {
- 
   padding-left: 15%;
   padding-top: 10%;
   padding-bottom: 5%;
@@ -18,7 +17,18 @@ body {
   margin-right: 0;
 }
 @media (min-width: 1024px) {
-.RoutesPath {
-  padding-bottom: 0;
+  .RoutesPath {
+    padding-bottom: 0;
+  }
 }
+@media (max-width: 500px) {
+  .RoutesPath {
+    padding-left: 10%;
+    width: 30%;
+  }
+}
+@media (max-width: 900px) {
+  .RoutesPath {
+    width: 50%;
+  }
 }

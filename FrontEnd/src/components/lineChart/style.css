@@ -48,3 +48,9 @@
     font-size: 12px;
   }
 }
+@media (max-width: 500px) {
+  .chartContainer {
+    width: 80%;
+    height: 70%;
+  }
+}

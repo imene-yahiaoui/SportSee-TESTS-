@@ -1,6 +1,6 @@
 @import "../../assets/css/variables.css";
 .profil {
-  width: 100%;
+  width: 100vw;
 }
 .container {
   height: 100%;
@@ -47,20 +47,73 @@
     gap: 19px;
   }
 }
-/* @media (min-width: 1024px) and (max-width: 1224px) { */
 
 @media (max-width: 1023px) {
   .container {
     flex-direction: column;
-    height: 100vh;
+    gap: 55px;
+    width: 80%;
   }
+
   .profilStatistics {
     width: 95%;
     order: 2;
+    gap: 55px;
   }
   .SectionNutrition {
     width: 95%;
     flex-direction: row;
     order: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .SectionNutrition {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  .Activity {
+    height: 300px;
+  }
+  .statsData {
+    height: 250px;
+  }
+  .kilogram {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .user-top h1,
+  .user-name {
+    font-weight: 500;
+    font-size: 28px;
+  }
+
+  .profilStatistics {
+    width: 80%;
+  }
+  .user p {
+    width: 60%;
+  }
+  .SectionNutrition {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .statsData {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .Activity {
+    /* width: 100%;
+    height: 200px; */
+    display: none;
   }
 }

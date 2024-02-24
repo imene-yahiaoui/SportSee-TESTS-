@@ -38,3 +38,9 @@
     height: 104px;
   }
 }
+@media (max-width: 500px) {
+  .nutrition {
+    width: 200px;
+    height: 116px;
+  }
+}

@@ -86,3 +86,9 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 500px) {
+  .barChartTitle {
+    font-size: 14px;
+  }
+}
