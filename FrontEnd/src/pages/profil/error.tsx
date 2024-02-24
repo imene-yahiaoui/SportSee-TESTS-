@@ -1,3 +1,10 @@
+/**
+ * Error Component
+ * @component
+ * @category Components/Error
+ * @description Renders an error message with a link to the homepage.
+ * @returns {JSX.Element} - The rendered Error component.
+ */
 import "./style.css";
 
 const Error = () => {

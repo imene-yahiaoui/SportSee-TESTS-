@@ -6,7 +6,6 @@
 import "./style.css";
 
 interface SettingsProps {}
-
 const Settings: React.FC<SettingsProps> = () => {
   document.title = "settings- SportSee";
 

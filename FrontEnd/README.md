@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Guide d'utilisation 🚀
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pour utiliser ce projet, suivez les étapes ci-dessous :
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1. Cloner le code
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Clonez le code depuis le dépôt GitHub.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+git clone https://github.com/imene-yahiaoui/SportSee.git
+
+
+### 2. Installer les dépendances
+
+   
+Après avoir cloné le code, accédez au répertoire du projet et exécutez la commande suivante pour installer les dépendances nécessaires.
+
+
+cd frontend
+
+
+npm install
+
+
+
+### 3. Démarrer le projet
+
+
+Une fois les dépendances installées, lancez le serveur avec la commande suivante.
+
+
+cd frontend
+
+
+npm run dev
+
+
+Cela ouvrira l'application sur votre navigateur à l'adresse http://localhost:5173/.

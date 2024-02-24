@@ -1,3 +1,14 @@
+/**
+ * RadarChartComponent - Component representing a radar chart.
+ *
+ * @component
+ * @param {Object} props - The properties of the component.
+ * @param {Array} props.data - The data to be displayed on the radar chart.
+ *   @param {string} props.data.kind - The type of data.
+ *   @param {number} props.data.value - The value associated with this type of data.
+ * @returns {JSX.Element} - The rendered RadarChartComponent.
+ */
+
 import "./style.css";
 import {
   Radar,

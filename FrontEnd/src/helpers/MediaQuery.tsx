@@ -1,7 +1,16 @@
+/**
+ * useMediaQuery Hook
+ * @function
+ * @category Hooks/MediaQuery
+ * @description A hook for handling media queries and updating component state accordingly.
+ * @param {string} query - The media query string.
+ * @param {boolean} defaultMatches - The default value for the media query matches. Defaults to the initial state.
+ * @returns {boolean} - The current state of the media query matches.
+ **/
 import { useEffect, useState } from "react";
 
 function useMediaQuery(
-  query: string, 
+  query: string,
   defaultMatches = window.matchMedia(query).matches
 ) {
   const [matches, setMatches] = useState(defaultMatches);

@@ -11,9 +11,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-
       <Verticalnavigation />
-
       <div className="RoutesPath">
         <RoutesPath />
       </div>

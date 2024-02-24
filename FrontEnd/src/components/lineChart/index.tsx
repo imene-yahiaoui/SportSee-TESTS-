@@ -49,7 +49,6 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ points }) => (
 
 const LineCharte: React.FC<LineCharteProps> = ({ data }) => {
   // A darker rectangle following the mouse on the chart
-
   return (
     <div className="chartContainer">
       <h3 className="chartLineTitle">

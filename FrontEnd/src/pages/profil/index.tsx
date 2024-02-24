@@ -1,3 +1,10 @@
+/**
+ * Profil Component
+ * @component
+ * @category Components/Profile
+ * @description Renders a user profile with loading indicator.
+ * @returns {JSX.Element} - The rendered Profil component.
+ */
 import ProfilUser from "../profil/profilUser";
 import WithLoader from "../../helpers/withLoader";
 import useUserData from "../../helpers/services/fetchdata";
