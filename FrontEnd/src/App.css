@@ -21,7 +21,7 @@ body {
     padding-bottom: 0;
   }
 }
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .RoutesPath {
     padding-left: 10%;
     width: 30%;
@@ -31,4 +31,4 @@ body {
   .RoutesPath {
     width: 50%;
   }
-}
+} */

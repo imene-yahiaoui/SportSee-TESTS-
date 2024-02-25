@@ -39,9 +39,4 @@
   }
 }
 
-@media (max-width: 500px) {
-  .vertical-navigation {
-    padding-top: 30%;
-    width: 70px;
-  }
-}
+ 

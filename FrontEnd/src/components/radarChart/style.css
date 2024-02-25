@@ -13,7 +13,6 @@
 
 @media (max-width: 500px) {
   .RadarChartContainer {
-    width: 80% !important;
-    height: 6000px !important;
+    width: 40% !important;
   }
 }

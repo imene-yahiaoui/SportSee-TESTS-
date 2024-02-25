@@ -60,11 +60,10 @@
 
 @media (max-width: 500px) {
   .RadialBarChart {
-    width: 80%;
-    height: 70%;
+    width: 40%;
   }
   .scoreValue {
     right: 39%;
-    bottom: 17%;
+    bottom: 24%;
   }
 }

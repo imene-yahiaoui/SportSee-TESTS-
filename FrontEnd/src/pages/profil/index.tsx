@@ -28,13 +28,13 @@ const Profil: React.FC<ProfilProps> = () => {
   }, [Iserror, infoUser]);
 
   return (
-    <div>
+   
       <ProfilWhitLoader
         loading={loading}
         infoUser={infoUser}
         Iserror={Iserror}
       />
-    </div>
+  
   );
 };
 export default Profil;

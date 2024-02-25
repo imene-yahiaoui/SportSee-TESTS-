@@ -71,7 +71,7 @@
   }
   .navbar {
     display: flex;
-    gap: 70%;
+    gap: 80%;
     justify-content: flex-start;
   }
   .nav {
@@ -98,20 +98,4 @@
     background-color: var(--couleur-principale);
     width:100vw;
   } 
-}
-
-@media (max-width: 500px) {
-  .navbar {
-    gap: 50%;
-  }
-}
-@media (max-width: 390px) {
-  .navbar {
-    gap: 40%;
-  }
-}
-@media (max-width: 320px) {
-  .navbar {
-    gap: 30%;
-  }
 }

@@ -49,10 +49,12 @@
 }
 
 @media (max-width: 1023px) {
+  .profil {
+    width: 100%;
+  }
   .container {
     flex-direction: column;
     gap: 55px;
-    width: 80%;
   }
 
   .profilStatistics {
@@ -72,6 +74,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+    width: 100%;
   }
   .Activity {
     height: 300px;
@@ -91,29 +94,17 @@
     font-size: 28px;
   }
 
-  .profilStatistics {
-    width: 80%;
-  }
   .user p {
     width: 60%;
   }
   .SectionNutrition {
-    width: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
   }
   .statsData {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     gap: 30px;
   }
 
-  .Activity {
-    /* width: 100%;
-    height: 200px; */
-    display: none;
-  }
+ 
 }
