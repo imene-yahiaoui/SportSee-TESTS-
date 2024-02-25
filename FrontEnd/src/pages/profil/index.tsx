@@ -18,8 +18,6 @@ const Profil: React.FC<ProfilProps> = () => {
   const isMockUser = [1, 2].includes(parseInt(id ?? "0", 10));
   const [loading, setLoading] = useState(true);
   const { infoUser, Iserror } = useUserData(isMockUser, id);
-  console.log(" dans le composet parent  infoUser", infoUser);
-  console.log(" dans le composet parent  Iserror", Iserror);
 
   useEffect(() => {
     if (Iserror === true || Iserror === false) {
@@ -28,13 +26,7 @@ const Profil: React.FC<ProfilProps> = () => {
   }, [Iserror, infoUser]);
 
   return (
-   
-      <ProfilWhitLoader
-        loading={loading}
-        infoUser={infoUser}
-        Iserror={Iserror}
-      />
-  
+    <ProfilWhitLoader loading={loading} infoUser={infoUser} Iserror={Iserror} />
   );
 };
 export default Profil;
