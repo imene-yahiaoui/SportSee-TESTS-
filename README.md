@@ -14,8 +14,8 @@ Le projet repose sur une stack technologique moderne :
 
 📜 TypeScript: Un langage de programmation typé pour améliorer la robustesse du code.
 
+🌲Cypress: Framework de test end-to-end pour garantir la qualité de l'application.
 
-cypress
 
 Guide d'utilisation 🚀
 Pour utiliser ce projet, suivez les étapes ci-dessous :
