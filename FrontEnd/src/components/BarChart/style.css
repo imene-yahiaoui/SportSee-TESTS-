@@ -74,7 +74,7 @@
   background-color: var(--couleur-principale);
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .barChartTitle {
     font-size: 14px;
   }
